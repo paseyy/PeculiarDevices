@@ -1,12 +1,14 @@
-// 1.20.1	2025-08-07T14:17:31.6279333	Block States: peculiardevices
+// 1.20.1	2025-08-07T21:59:04.4143064	Block States: peculiardevices
 6a58af3036c6541dbfa38eeaed88d42dfa35ffcd assets/peculiardevices/blockstates/barbertonite_ore.json
 87e46a272dc07fa8ab320276b465039277dacf85 assets/peculiardevices/blockstates/geo_device_frame.json
+2e745a3d9203def49419144a99b8230d2e72d21b assets/peculiardevices/blockstates/geo_energy_cell.json
 64c8e78831a81c40f6b83519824b3bbd7ae9d909 assets/peculiardevices/blockstates/geo_generator.json
 beb1fb7151443ef4cd67ed9b5aef3ea8ac342146 assets/peculiardevices/blockstates/geo_pipe.json
 6fb0650183040101899e997724a3734967335a5b assets/peculiardevices/blockstates/lithium_ore.json
 28c5e642d538ef9deb09dddcfe0e5595d0fe64ad assets/peculiardevices/blockstates/vibratory_mill.json
 ca403a4a68f305bab3f4aaf7d09dadf05b0368b1 assets/peculiardevices/models/block/barbertonite_ore.json
 4afe36e8f51451f2923ef9282902cdcb79bb05f7 assets/peculiardevices/models/block/geo_device_frame.json
+8d567db19986e94025805e8ff62d4d6b027766cc assets/peculiardevices/models/block/geo_energy_cell.json
 c858674efe1a780862f901b5d4d73d5d4218e0c8 assets/peculiardevices/models/block/lithium_ore.json
 c598bb674fd3403fe225a2d0ae5d2358efa9fa59 assets/peculiardevices/models/item/barbertonite_ore.json
 1e08e59f896900e00b0f48f9554ac2fa1a9dc037 assets/peculiardevices/models/item/geo_device_frame.json

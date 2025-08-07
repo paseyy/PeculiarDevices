@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "peculiardevices:block/geo_energy_cell_front",
+    "side": "peculiardevices:block/geo_energy_cell_side",
+    "top": "peculiardevices:block/geo_energy_cell_side"
+  }
+}

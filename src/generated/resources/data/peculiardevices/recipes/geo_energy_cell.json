@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "peculiardevices:lithium_battery"
+    },
+    "F": {
+      "item": "peculiardevices:geo_device_frame"
+    }
+  },
+  "pattern": [
+    "BBB",
+    "BFB",
+    "BBB"
+  ],
+  "result": {
+    "item": "peculiardevices:geo_energy_cell"
+  },
+  "show_notification": true
+}

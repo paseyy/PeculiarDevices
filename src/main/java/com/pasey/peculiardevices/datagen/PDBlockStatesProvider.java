@@ -21,11 +21,17 @@ public class PDBlockStatesProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
+        horizontalBlock(PDBlocks.GEO_ENERGY_CELL.get(), state ->
+                models().orientable("geo_energy_cell",
+                        modLoc("block/geo_energy_cell_side"),
+                        modLoc("block/geo_energy_cell_front"),
+                        modLoc("block/geo_energy_cell_side")));
         horizontalBlock(PDBlocks.GEO_GENERATOR.get(), state ->
                 models().getExistingFile(modLoc("block/geo_generator")));
         horizontalBlock(PDBlocks.VIBRATORY_MILL.get(), state ->
                 models().getExistingFile(modLoc("block/vibratory_mill")));
 
+        // stackables (only geo pipe?)
         downStackableBlock(PDBlocks.GEO_PIPE.get());
 
         // simple blocks

@@ -1,6 +1,7 @@
-// 1.20.1	2025-08-07T14:17:31.6299763	Loot Tables
+// 1.20.1	2025-08-07T21:59:04.4163069	Loot Tables
 8a19dc47b2540d4f49ec5bbf593ae58ce9747087 data/peculiardevices/loot_tables/blocks/barbertonite_ore.json
 fabb07ae857cc9598c68d547d0f88be2bca2918c data/peculiardevices/loot_tables/blocks/geo_device_frame.json
+8d40b5f973088071ea608600cba17dbbe1dc6a9d data/peculiardevices/loot_tables/blocks/geo_energy_cell.json
 fc271ad8df1ee052e537edbfabb1c7f47743e252 data/peculiardevices/loot_tables/blocks/geo_generator.json
 925900c0ec6a554f8db4c93ea4aec10fe88598f4 data/peculiardevices/loot_tables/blocks/geo_pipe.json
 a879172cae4e0a012cde29a91a28b081a1ae4e4c data/peculiardevices/loot_tables/blocks/lithium_ore.json

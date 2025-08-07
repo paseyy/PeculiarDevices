@@ -38,8 +38,8 @@ public class GeoGeneratorScreen extends BaseDeviceScreen<GeoGeneratorMenu> {
                 Component.literal("Energy: " + formatCapacity(menu.getEnergy(), menu.getMaxEnergy()));
         Component energyGeneratedText =
                 Component.literal("Generating " + formatEnergy(menu.getBlockEntity().getEnergyGenPerTick(), true) + "/t");
-        pGuiGraphics.drawString(font, energyStoredText, this.leftPos + 33, this.topPos + 26, 0x6666FF, false);
-        pGuiGraphics.drawString(font, energyGeneratedText, this.leftPos + 33, this.topPos + 37, 0x6666FF, false);
+        pGuiGraphics.drawString(font, energyStoredText, this.leftPos + 33, this.topPos + 26, DISPLAY_TEXT_COLOR, false);
+        pGuiGraphics.drawString(font, energyGeneratedText, this.leftPos + 33, this.topPos + 37, DISPLAY_TEXT_COLOR, false);
 
         Component energyText =
                 Component.literal("Energy: " + formatCapacity(menu.getEnergy(), menu.getMaxEnergy()));

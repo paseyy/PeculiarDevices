@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "peculiardevices:block/geo_energy_cell",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "peculiardevices:block/geo_energy_cell"
+    },
+    "facing=south": {
+      "model": "peculiardevices:block/geo_energy_cell",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "peculiardevices:block/geo_energy_cell",
+      "y": 270
+    }
+  }
+}

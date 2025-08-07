@@ -11,6 +11,7 @@ import net.minecraft.world.entity.player.Inventory;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import static com.pasey.peculiardevices.client.screen.util.FormatText.formatCapacity;
+import static com.pasey.peculiardevices.client.screen.util.FormatText.formatEnergy;
 
 public class GeoEnergyCellScreen extends BaseDeviceScreen<GeoEnergyCellMenu> {
     public GeoEnergyCellScreen(GeoEnergyCellMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
@@ -30,6 +31,13 @@ public class GeoEnergyCellScreen extends BaseDeviceScreen<GeoEnergyCellMenu> {
     @ParametersAreNonnullByDefault
     public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
         super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
+
+        Component energyStoredText1 =
+                Component.literal("Energy:");
+        Component energyStoredText2 =
+                Component.literal(formatCapacity(menu.getEnergy(), menu.getMaxEnergy()));
+        pGuiGraphics.drawString(font, energyStoredText1, this.leftPos + 10, this.topPos + 28, DISPLAY_TEXT_COLOR, false);
+        pGuiGraphics.drawString(font, energyStoredText2, this.leftPos + 10, this.topPos + 32, DISPLAY_TEXT_COLOR, false);
 
         Component energyText =
                 Component.literal("Energy: " + formatCapacity(menu.getEnergy(), menu.getMaxEnergy()));

@@ -11,7 +11,7 @@ import net.minecraft.world.entity.player.Inventory;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 public abstract class BaseDeviceScreen<T extends DeviceMenu<?>> extends AbstractContainerScreen<T> {
-
+    public static final int DISPLAY_TEXT_COLOR = 0x4466FF;
     public BaseDeviceScreen(T pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
     }
