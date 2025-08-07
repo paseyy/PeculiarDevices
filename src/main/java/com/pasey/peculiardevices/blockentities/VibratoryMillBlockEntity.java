@@ -30,7 +30,7 @@ public class VibratoryMillBlockEntity extends ProcessorBlockEntity<MillingRecipe
     @Nullable
     @ParametersAreNonnullByDefault
     public AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player pPlayer) {
-        return new VibratoryMillMenu(pContainerId, pPlayerInventory, this, this.data);
+        return new VibratoryMillMenu(pContainerId, pPlayerInventory, this, this.progressData);
     }
 
     @Override

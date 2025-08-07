@@ -68,6 +68,8 @@ public class SidedItemHandler {
         return Direction.NORTH;
     }
 
+    public static Direction getBack(BlockState state) { return getRight(getRight(getFacing(state))); }
+
     public static Direction getRight(BlockState state) {
         return getRight(getFacing(state));
     }

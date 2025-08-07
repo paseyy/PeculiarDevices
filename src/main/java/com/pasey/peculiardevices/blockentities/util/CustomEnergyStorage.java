@@ -36,4 +36,8 @@ public class CustomEnergyStorage extends EnergyStorage {
     public void removeEnergy(int energy) {
         setEnergy(this.energy - energy);
     }
+
+    public int getMaxExtract() {
+        return this.maxExtract;
+    }
 }

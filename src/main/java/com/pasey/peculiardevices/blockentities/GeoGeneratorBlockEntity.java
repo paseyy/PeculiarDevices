@@ -14,8 +14,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import static com.pasey.peculiardevices.blockentities.util.SidedItemHandler.getBack;
 
 public class GeoGeneratorBlockEntity extends GeneratorBlockEntity {
     private int numConnectedPipes;
@@ -62,6 +67,15 @@ public class GeoGeneratorBlockEntity extends GeneratorBlockEntity {
         }
 
         super.tick();
+    }
+
+    @Override
+    public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+        if (cap == ForgeCapabilities.ENERGY && side == getBack(getBlockState())) {
+            return getEnergyOptional().cast();
+        }
+
+        return super.getCapability(cap, side);
     }
 
     @Override

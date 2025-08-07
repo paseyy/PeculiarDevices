@@ -11,9 +11,10 @@ import net.minecraft.world.entity.player.Inventory;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import static com.pasey.peculiardevices.client.screen.util.FormatText.formatCapacity;
+import static com.pasey.peculiardevices.client.screen.util.FormatText.formatEnergy;
+
 public class GeoGeneratorScreen extends BaseDeviceScreen<GeoGeneratorMenu> {
-    private final MutableComponent energyStoredText = Component.literal("");
-    private final MutableComponent energyGeneratedText = Component.literal("");
 
     public GeoGeneratorScreen(GeoGeneratorMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -27,18 +28,12 @@ public class GeoGeneratorScreen extends BaseDeviceScreen<GeoGeneratorMenu> {
     public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
         super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
 
-        energyStoredText.getSiblings().clear();
-        energyStoredText.append("Energy: ")
-                        .append(String.valueOf(menu.getEnergy()))
-                        .append("/")
-                        .append(String.valueOf(menu.getMaxEnergy()));
-        energyGeneratedText.getSiblings().clear();
-        energyGeneratedText.append("Generating ")
-                           .append(String.valueOf(menu.getBlockEntity().getEnergyGenPerTick()))
-                           .append(" FE/s");
-        pGuiGraphics.drawString(font, energyStoredText, this.leftPos + 44, this.topPos + 29, 0x6666FF, false);
-        pGuiGraphics.drawString(font, energyGeneratedText, this.leftPos + 44, this.topPos + 40, 0x6666FF, false);
-
+        Component energyStoredText =
+                Component.literal("Energy: " + formatCapacity(menu.getEnergy(), menu.getMaxEnergy()));
+        Component energyGeneratedText =
+                Component.literal("Generating " + formatEnergy(menu.getBlockEntity().getEnergyGenPerTick(), true) + "/t");
+        pGuiGraphics.drawString(font, energyStoredText, this.leftPos + 33, this.topPos + 26, 0x6666FF, false);
+        pGuiGraphics.drawString(font, energyGeneratedText, this.leftPos + 33, this.topPos + 37, 0x6666FF, false);
     }
 
     @Override

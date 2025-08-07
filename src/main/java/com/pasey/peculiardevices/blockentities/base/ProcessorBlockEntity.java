@@ -12,7 +12,12 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.common.util.LazyOptional;
+import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -26,13 +31,13 @@ public abstract class ProcessorBlockEntity<T extends BaseRecipe<T>> extends Devi
 
     protected int progress = 0;
     protected int maxProgress = 0;
-    protected final ContainerData data;
+    protected final ContainerData progressData;
 
 
     public ProcessorBlockEntity(BlockEntityType<? extends DeviceBlockEntity> pType, BlockPos pPos, BlockState pBlockState, int inventorySlots, int[] inputSlots, int[] outputSlots, CustomEnergyStorage energyStorage) {
         super(pType, pPos, pBlockState, inventorySlots, energyStorage);
 
-        this.data = new ContainerData() {
+        this.progressData = new ContainerData() {
             @Override
             public int get(int pIndex) {
                 return switch (pIndex) {
@@ -234,6 +239,15 @@ public abstract class ProcessorBlockEntity<T extends BaseRecipe<T>> extends Devi
     public boolean canTakeItemThroughFace(int slot, Direction side) {
         BlockState state = this.getBlockState();
         return contains(outputSlots, slot) && (side == Direction.DOWN || side == getLeft(state));
+    }
+
+    @Override
+    public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+        if (cap == ForgeCapabilities.ENERGY && side == getBack(getBlockState())) {
+            return getEnergyOptional().cast();
+        }
+
+        return super.getCapability(cap, side);
     }
 
     public int getProgress() {

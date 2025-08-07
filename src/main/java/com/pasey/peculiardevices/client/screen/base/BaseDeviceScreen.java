@@ -11,8 +11,9 @@ import net.minecraft.world.entity.player.Inventory;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import static com.pasey.peculiardevices.client.screen.util.FormatText.formatCapacity;
+
 public abstract class BaseDeviceScreen<T extends DeviceMenu<?>> extends AbstractContainerScreen<T> {
-    private final MutableComponent energyBarTooltip = Component.literal("");
 
     public BaseDeviceScreen(T pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -39,13 +40,10 @@ public abstract class BaseDeviceScreen<T extends DeviceMenu<?>> extends Abstract
         super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
         renderTooltip(pGuiGraphics, pMouseX, pMouseY);
 
-        if(isHovering(11, 12, 10, 56, pMouseX, pMouseY)) {
-            energyBarTooltip.getSiblings().clear();
-            energyBarTooltip.append("Energy: ")
-                    .append(String.valueOf(menu.getEnergy()))
-                    .append("/")
-                    .append(String.valueOf(menu.getMaxEnergy()));
-            pGuiGraphics.renderTooltip(font, energyBarTooltip, pMouseX, pMouseY);
+        Component energyText =
+                Component.literal("Energy: " + formatCapacity(menu.getEnergy(), menu.getMaxEnergy()));
+        if(isHovering(11, 15, 10, 56, pMouseX, pMouseY)) {
+            pGuiGraphics.renderTooltip(font, energyText, pMouseX, pMouseY);
         }
     }
 
