@@ -32,13 +32,13 @@ public class PDBlockTagsProvider extends BlockTagsProvider {
         // generics
         tag(PDTags.Blocks.PD_DEVICES)
                 .add(deviceBlocks)
-                .add(PDBlocks.GEO_PIPE.get());
+                .add(PDBlocks.GEO_PIPE.get())
+        ;
 
         tag(PDTags.Blocks.PD_ORES)
                 .add(PDBlocks.LITHIUM_ORE.get())
                 .add(PDBlocks.BARBERTONITE_ORE.get())
         ;
-
 
         // specifics
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
@@ -67,8 +67,6 @@ public class PDBlockTagsProvider extends BlockTagsProvider {
                 .add(PDBlocks.LITHIUM_ORE.get())
                 .add(PDBlocks.BARBERTONITE_ORE.get())
         ;
-
-
     }
 }
 

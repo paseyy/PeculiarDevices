@@ -23,7 +23,7 @@ public class GeoEnergyCellScreen extends BaseDeviceScreen<GeoEnergyCellMenu> {
     @ParametersAreNonnullByDefault
     protected void renderBg(GuiGraphics pGuiGraphics, float pPartialTick, int pMouseX, int pMouseY) {
         super.renderBg(pGuiGraphics, pPartialTick, pMouseX, pMouseY);
-        renderEnergyBar(pGuiGraphics, this.leftPos + 83, this.topPos + 16, 176, 56);
+        renderEnergyBar(pGuiGraphics, this.leftPos + 83, this.topPos + 72, 176, 56);
     }
 
     @Override

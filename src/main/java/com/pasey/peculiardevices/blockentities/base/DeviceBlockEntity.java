@@ -2,6 +2,7 @@ package com.pasey.peculiardevices.blockentities.base;
 
 import com.pasey.peculiardevices.PeculiarDevices;
 import com.pasey.peculiardevices.blockentities.util.CustomEnergyStorage;
+import com.pasey.peculiardevices.blockentities.util.EnergyStorageParams;
 import com.pasey.peculiardevices.blockentities.util.SidedItemHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -66,7 +67,7 @@ public abstract class DeviceBlockEntity extends BlockEntity implements MenuProvi
         }
     };
 
-    public DeviceBlockEntity(BlockEntityType<? extends DeviceBlockEntity> pType, BlockPos pPos, BlockState pBlockState, int inventorySlots, CustomEnergyStorage energyStorage) {
+    public DeviceBlockEntity(BlockEntityType<? extends DeviceBlockEntity> pType, BlockPos pPos, BlockState pBlockState, int inventorySlots, EnergyStorageParams energyStorage) {
         super(pType, pPos, pBlockState);
         INVENTORY_SLOTS = inventorySlots;
         inventory = new ItemStackHandler(inventorySlots) {
@@ -78,7 +79,7 @@ public abstract class DeviceBlockEntity extends BlockEntity implements MenuProvi
         };
 
         this.sidedHandlers = SidedItemHandler.createSidedHandlers(this);
-        this.energyStorage = energyStorage;
+        this.energyStorage = new CustomEnergyStorage(energyStorage, this);
     }
 
     @Override

@@ -23,11 +23,14 @@ public class PDLootTablesProvider extends VanillaBlockLoot {
 
     @Override
     protected void generate() {
+        // Devices
         dropSelf(PDBlocks.GEO_DEVICE_FRAME.get());
+        dropSelf(PDBlocks.GEO_ENERGY_CELL.get());
         dropSelf(PDBlocks.GEO_GENERATOR.get());
         dropSelf(PDBlocks.GEO_PIPE.get());
         dropSelf(PDBlocks.VIBRATORY_MILL.get());
 
+        // Ores
         add(PDBlocks.LITHIUM_ORE.get(),
                 block -> createOreDrop(PDBlocks.LITHIUM_ORE.get(), PDItems.RAW_LITHIUM.get()));
         add(PDBlocks.BARBERTONITE_ORE.get(),

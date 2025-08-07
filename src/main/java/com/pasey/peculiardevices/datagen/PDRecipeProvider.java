@@ -10,6 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -138,6 +139,15 @@ public class PDRecipeProvider extends RecipeProvider {
                 .define('C', Items.COPPER_INGOT)
                 .define('S', Items.STONE)
                 .unlockedBy(getHasName(PDItems.LITHIUM_INGOT.get()), has(PDItems.LITHIUM_INGOT.get()))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PDItems.GEO_ENERGY_CELL_ITEM.get())
+                .pattern("BBB")
+                .pattern("BFB")
+                .pattern("BBB")
+                .define('B', PDItems.LITHIUM_BATTERY.get())
+                .define('F', PDItems.GEO_DEVICE_FRAME_ITEM.get())
+                .unlockedBy(getHasName(PDItems.LITHIUM_BATTERY.get()), has(PDItems.LITHIUM_BATTERY.get()))
                 .save(consumer);
     }
 

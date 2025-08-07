@@ -3,6 +3,7 @@ package com.pasey.peculiardevices.blockentities;
 import com.pasey.peculiardevices.PeculiarDevices;
 import com.pasey.peculiardevices.blockentities.base.GeneratorBlockEntity;
 import com.pasey.peculiardevices.blockentities.util.CustomEnergyStorage;
+import com.pasey.peculiardevices.blockentities.util.EnergyStorageParams;
 import com.pasey.peculiardevices.menu.GeoGeneratorMenu;
 import com.pasey.peculiardevices.registration.PDBlockEntities;
 import com.pasey.peculiardevices.registration.PDBlocks;
@@ -29,7 +30,7 @@ public class GeoGeneratorBlockEntity extends GeneratorBlockEntity {
 
     public GeoGeneratorBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(PDBlockEntities.GEO_GENERATOR_BE.get(), pPos, pBlockState, 0,
-                new CustomEnergyStorage(20000, 0, 1000, 0));
+                new EnergyStorageParams(20000, 0, 100, 0));
 
     }
 

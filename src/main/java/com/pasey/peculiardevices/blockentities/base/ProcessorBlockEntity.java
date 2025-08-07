@@ -1,6 +1,7 @@
 package com.pasey.peculiardevices.blockentities.base;
 
 import com.pasey.peculiardevices.blockentities.util.CustomEnergyStorage;
+import com.pasey.peculiardevices.blockentities.util.EnergyStorageParams;
 import com.pasey.peculiardevices.recipe.base.BaseRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -34,7 +35,7 @@ public abstract class ProcessorBlockEntity<T extends BaseRecipe<T>> extends Devi
     protected final ContainerData progressData;
 
 
-    public ProcessorBlockEntity(BlockEntityType<? extends DeviceBlockEntity> pType, BlockPos pPos, BlockState pBlockState, int inventorySlots, int[] inputSlots, int[] outputSlots, CustomEnergyStorage energyStorage) {
+    public ProcessorBlockEntity(BlockEntityType<? extends DeviceBlockEntity> pType, BlockPos pPos, BlockState pBlockState, int inventorySlots, int[] inputSlots, int[] outputSlots, EnergyStorageParams energyStorage) {
         super(pType, pPos, pBlockState, inventorySlots, energyStorage);
 
         this.progressData = new ContainerData() {

@@ -3,6 +3,7 @@ package com.pasey.peculiardevices.blockentities;
 import com.pasey.peculiardevices.PeculiarDevices;
 import com.pasey.peculiardevices.blockentities.base.ProcessorBlockEntity;
 import com.pasey.peculiardevices.blockentities.util.CustomEnergyStorage;
+import com.pasey.peculiardevices.blockentities.util.EnergyStorageParams;
 import com.pasey.peculiardevices.menu.VibratoryMillMenu;
 import com.pasey.peculiardevices.recipe.MillingRecipe;
 import com.pasey.peculiardevices.registration.PDBlockEntities;
@@ -23,7 +24,7 @@ public class VibratoryMillBlockEntity extends ProcessorBlockEntity<MillingRecipe
 
     public VibratoryMillBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(PDBlockEntities.VIBRATORY_MILL_BE.get(), pPos, pBlockState, INVENTORY_SLOTS, new int[] {0}, new int[] {1, 2, 3},
-                new CustomEnergyStorage(10000, 1000, 1000, 0));
+                new EnergyStorageParams(10000, 100, 0, 0));
     }
 
     @Override

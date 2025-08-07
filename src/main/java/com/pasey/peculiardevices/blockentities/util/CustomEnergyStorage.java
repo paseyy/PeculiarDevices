@@ -1,23 +1,23 @@
 // Credit to TurtyWurty: https://github.com/DaRealTurtyWurty/1.20-Tutorial-Mod/blob/main/src/main/java/dev/turtywurty/tutorialmod/blockentity/util/CustomEnergyStorage.java
 package com.pasey.peculiardevices.blockentities.util;
 
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.energy.EnergyStorage;
 
+import java.util.function.Supplier;
+
 public class CustomEnergyStorage extends EnergyStorage {
-    public CustomEnergyStorage(int capacity) {
-        super(capacity);
+    private final BlockEntity owner;
+
+    public CustomEnergyStorage(EnergyStorageParams params, BlockEntity owner) {
+        this(params.capacity, params.maxReceive, params.maxExtract, params.energy, owner);
     }
 
-    public CustomEnergyStorage(int capacity, int maxTransfer) {
-        super(capacity, maxTransfer);
-    }
-
-    public CustomEnergyStorage(int capacity, int maxReceive, int maxExtract) {
-        super(capacity, maxReceive, maxExtract);
-    }
-
-    public CustomEnergyStorage(int capacity, int maxReceive, int maxExtract, int energy) {
+    private CustomEnergyStorage(int capacity, int maxReceive, int maxExtract, int energy, BlockEntity owner) {
         super(capacity, maxReceive, maxExtract, energy);
+        this.owner = owner;
     }
 
     public void setEnergy(int energy) {
@@ -27,6 +27,23 @@ public class CustomEnergyStorage extends EnergyStorage {
             energy = this.capacity;
 
         this.energy = energy;
+    }
+
+    @Override
+    public int receiveEnergy(int maxReceive, boolean simulate) {
+        if (!canReceive())
+            return 0;
+
+        int energyReceived = Math.min(capacity - energy, Math.min(this.maxReceive, maxReceive));
+        if (!simulate) {
+            energy += energyReceived;
+            owner.setChanged();
+            if (owner.getLevel() != null && !owner.getLevel().isClientSide()) {
+                owner.getLevel().sendBlockUpdated(owner.getBlockPos(), owner.getBlockState(), owner.getBlockState(), Block.UPDATE_ALL);
+            }
+        }
+
+        return energyReceived;
     }
 
     public void addEnergy(int energy) {
@@ -41,3 +58,4 @@ public class CustomEnergyStorage extends EnergyStorage {
         return this.maxExtract;
     }
 }
+

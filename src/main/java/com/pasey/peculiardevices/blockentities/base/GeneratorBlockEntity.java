@@ -2,6 +2,7 @@ package com.pasey.peculiardevices.blockentities.base;
 
 import com.pasey.peculiardevices.PeculiarDevices;
 import com.pasey.peculiardevices.blockentities.util.CustomEnergyStorage;
+import com.pasey.peculiardevices.blockentities.util.EnergyStorageParams;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -16,7 +17,7 @@ public abstract class GeneratorBlockEntity extends DeviceBlockEntity {
     private int[] fuelSlots;
     private int burnTime = 0, maxBurnTime = 0;
 
-    public GeneratorBlockEntity(BlockEntityType<? extends DeviceBlockEntity> pType, BlockPos pPos, BlockState pBlockState, int inventorySlots, CustomEnergyStorage energyStorage) {
+    public GeneratorBlockEntity(BlockEntityType<? extends DeviceBlockEntity> pType, BlockPos pPos, BlockState pBlockState, int inventorySlots, EnergyStorageParams energyStorage) {
         super(pType, pPos, pBlockState, inventorySlots, energyStorage);
     }
 

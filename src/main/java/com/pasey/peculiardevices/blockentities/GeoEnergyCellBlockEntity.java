@@ -2,7 +2,7 @@ package com.pasey.peculiardevices.blockentities;
 
 import com.pasey.peculiardevices.PeculiarDevices;
 import com.pasey.peculiardevices.blockentities.base.DeviceBlockEntity;
-import com.pasey.peculiardevices.blockentities.util.CustomEnergyStorage;
+import com.pasey.peculiardevices.blockentities.util.EnergyStorageParams;
 import com.pasey.peculiardevices.menu.GeoEnergyCellMenu;
 import com.pasey.peculiardevices.registration.PDBlockEntities;
 import net.minecraft.core.BlockPos;
@@ -23,7 +23,7 @@ public class GeoEnergyCellBlockEntity extends DeviceBlockEntity {
 
     public GeoEnergyCellBlockEntity(BlockPos pos, BlockState state) {
         super(PDBlockEntities.GEO_ENERGY_CELL_BE.get(), pos, state, 1,
-                new CustomEnergyStorage(100_000, 1000,1000, 0));
+                new EnergyStorageParams(100_000, 100,100, 0));
     }
 
     @Override
