@@ -5,13 +5,10 @@ import com.pasey.peculiardevices.menu.base.ProcessorMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-
-import static com.pasey.peculiardevices.client.screen.util.FormatText.formatCapacity;
 
 public abstract class BaseDeviceScreen<T extends DeviceMenu<?>> extends AbstractContainerScreen<T> {
 
@@ -30,7 +27,7 @@ public abstract class BaseDeviceScreen<T extends DeviceMenu<?>> extends Abstract
     protected void renderBg(GuiGraphics pGuiGraphics, float pPartialTick, int pMouseX, int pMouseY) {
         renderBackground(pGuiGraphics);
         pGuiGraphics.blit(getTexture(), this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
-        renderEnergyBar(pGuiGraphics, this.leftPos + 11, this.topPos + 67, 176, 56);
+
     }
 
     @Override
@@ -39,12 +36,6 @@ public abstract class BaseDeviceScreen<T extends DeviceMenu<?>> extends Abstract
         renderBg(pGuiGraphics, pPartialTick, pMouseX, pMouseY);
         super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
         renderTooltip(pGuiGraphics, pMouseX, pMouseY);
-
-        Component energyText =
-                Component.literal("Energy: " + formatCapacity(menu.getEnergy(), menu.getMaxEnergy()));
-        if(isHovering(11, 15, 10, 56, pMouseX, pMouseY)) {
-            pGuiGraphics.renderTooltip(font, energyText, pMouseX, pMouseY);
-        }
     }
 
     /**
@@ -67,7 +58,7 @@ public abstract class BaseDeviceScreen<T extends DeviceMenu<?>> extends Abstract
         }
     }
 
-    private void renderEnergyBar(GuiGraphics pGuiGraphics, int targetX, int targetY, int sourceX, int sourceY) {
+    protected void renderEnergyBar(GuiGraphics pGuiGraphics, int targetX, int targetY, int sourceX, int sourceY) {
         if (menu.getEnergy() > 0) {
             int energyBarHeight = (int) (menu.getScaledEnergy() * 56);
             pGuiGraphics.blit(getTexture(), targetX, targetY - energyBarHeight, sourceX, sourceY - energyBarHeight, 10, energyBarHeight);

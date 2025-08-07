@@ -1,6 +1,6 @@
 package com.pasey.peculiardevices.blocks.devices;
 
-import com.pasey.peculiardevices.blockentities.GeoGeneratorBlockEntity;
+import com.pasey.peculiardevices.blockentities.GeoEnergyCellBlockEntity;
 import com.pasey.peculiardevices.blockentities.base.DeviceBlockEntity;
 import com.pasey.peculiardevices.blocks.base.BaseDeviceBlock;
 import com.pasey.peculiardevices.registration.PDBlockEntities;
@@ -18,25 +18,23 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-public class GeoGenerator extends BaseDeviceBlock {
-    public GeoGenerator() {
+public class GeoEnergyCell extends BaseDeviceBlock {
+    public GeoEnergyCell() {
         super(Properties.of()
                 .mapColor(MapColor.METAL)
                 .requiresCorrectToolForDrops()
                 .strength(1.5f, 3.0f)
-                .sound(SoundType.METAL)
-                .noOcclusion());
+                .sound(SoundType.METAL));
     }
 
     @Override
-    @Nullable
-    public BlockEntity newBlockEntity(@NotNull BlockPos pPos, @NotNull BlockState pState) {
-        return PDBlockEntities.GEO_GENERATOR_BE.get().create(pPos, pState);
+    @ParametersAreNonnullByDefault
+    public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+        return new GeoEnergyCellBlockEntity(blockPos, blockState);
     }
 
     @Override
@@ -44,7 +42,7 @@ public class GeoGenerator extends BaseDeviceBlock {
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         BlockEntity be = pLevel.getBlockEntity(pPos);
 
-        if(!(be instanceof GeoGeneratorBlockEntity blockEntity))
+        if(!(be instanceof GeoEnergyCellBlockEntity blockEntity))
             return InteractionResult.PASS;
 
         if(pLevel.isClientSide())
@@ -62,7 +60,6 @@ public class GeoGenerator extends BaseDeviceBlock {
     @Override
     @ParametersAreNonnullByDefault
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        return DeviceBlockEntity.createTickerHelper(pBlockEntityType, PDBlockEntities.GEO_GENERATOR_BE.get());
+        return DeviceBlockEntity.createTickerHelper(pBlockEntityType, PDBlockEntities.GEO_ENERGY_CELL_BE.get());
     }
 }
-

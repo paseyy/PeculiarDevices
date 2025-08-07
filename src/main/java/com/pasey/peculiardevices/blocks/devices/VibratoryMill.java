@@ -1,6 +1,7 @@
 package com.pasey.peculiardevices.blocks.devices;
 
 import com.pasey.peculiardevices.blockentities.VibratoryMillBlockEntity;
+import com.pasey.peculiardevices.blockentities.base.DeviceBlockEntity;
 import com.pasey.peculiardevices.blocks.base.BaseDeviceBlock;
 import com.pasey.peculiardevices.registration.PDBlockEntities;
 import net.minecraft.core.BlockPos;
@@ -11,6 +12,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
@@ -54,5 +57,12 @@ public class VibratoryMill extends BaseDeviceBlock {
         }
 
         return InteractionResult.CONSUME;
+    }
+
+    @Nullable
+    @Override
+    @ParametersAreNonnullByDefault
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
+        return DeviceBlockEntity.createTickerHelper(pBlockEntityType, PDBlockEntities.VIBRATORY_MILL_BE.get());
     }
 }

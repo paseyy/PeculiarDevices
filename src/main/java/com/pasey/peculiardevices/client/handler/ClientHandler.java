@@ -1,6 +1,7 @@
 package com.pasey.peculiardevices.client.handler;
 
 import com.pasey.peculiardevices.PeculiarDevices;
+import com.pasey.peculiardevices.client.screen.GeoEnergyCellScreen;
 import com.pasey.peculiardevices.client.screen.GeoGeneratorScreen;
 import com.pasey.peculiardevices.client.screen.VibratoryMillScreen;
 import com.pasey.peculiardevices.registration.PDMenus;
@@ -17,6 +18,7 @@ public class ClientHandler {
         event.enqueueWork(() -> {
             MenuScreens.register(PDMenus.VIBRATORY_MILL_MENU.get(), VibratoryMillScreen::new);
             MenuScreens.register(PDMenus.GEO_GENERATOR_MENU.get(), GeoGeneratorScreen::new);
+            MenuScreens.register(PDMenus.GEO_ENERGY_CELL_MENU.get(), GeoEnergyCellScreen::new);
         });
     }
 }

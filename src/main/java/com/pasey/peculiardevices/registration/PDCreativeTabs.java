@@ -33,6 +33,7 @@ public class PDCreativeTabs {
                         // block items
                         output.accept(PDItems.BARBERTONITE_ORE_ITEM.get());
                         output.accept(PDItems.GEO_DEVICE_FRAME_ITEM.get());
+                        output.accept(PDItems.GEO_ENERGY_CELL_ITEM.get());
                         output.accept(PDItems.GEO_GENERATOR_ITEM.get());
                         output.accept(PDItems.GEO_PIPE_ITEM.get());
                         output.accept(PDItems.LITHIUM_ORE_ITEM.get());

@@ -29,12 +29,11 @@ import org.jetbrains.annotations.Nullable;
 
 public abstract class DeviceBlockEntity extends BlockEntity implements MenuProvider, TickableBlockEntity {
     public static int INVENTORY_SLOTS;
-    public static BlockEntityType<? extends DeviceBlockEntity> TYPE;
 
     // Inventory
     private final ItemStackHandler inventory;
+    protected final LazyOptional<ItemStackHandler> inventoryOptional = LazyOptional.of(this::getInventory);
     private final LazyOptional<IItemHandler>[] sidedHandlers;
-    protected final LazyOptional<ItemStackHandler> allOptional = LazyOptional.of(this::getInventory);
     public abstract int[] getSlotsForFace(Direction side);
     public abstract boolean canPlaceItemThroughFace(int slot, ItemStack stack, Direction side);
     public abstract boolean canTakeItemThroughFace(int slot, Direction side);
@@ -70,7 +69,6 @@ public abstract class DeviceBlockEntity extends BlockEntity implements MenuProvi
     public DeviceBlockEntity(BlockEntityType<? extends DeviceBlockEntity> pType, BlockPos pPos, BlockState pBlockState, int inventorySlots, CustomEnergyStorage energyStorage) {
         super(pType, pPos, pBlockState);
         INVENTORY_SLOTS = inventorySlots;
-        TYPE = pType;
         inventory = new ItemStackHandler(inventorySlots) {
             @Override
             protected void onContentsChanged(int slot) {
@@ -181,8 +179,8 @@ public abstract class DeviceBlockEntity extends BlockEntity implements MenuProvi
         this.inventory.setStackInSlot(slot, stack);
     }
 
-    public LazyOptional<ItemStackHandler> getOptional() {
-        return allOptional;
+    public LazyOptional<ItemStackHandler> getInventoryOptional() {
+        return inventoryOptional;
     }
 
     public CustomEnergyStorage getEnergyStorage() {

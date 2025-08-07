@@ -5,9 +5,9 @@ import com.pasey.peculiardevices.client.screen.base.BaseDeviceScreen;
 import com.pasey.peculiardevices.menu.GeoGeneratorMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -24,6 +24,12 @@ public class GeoGeneratorScreen extends BaseDeviceScreen<GeoGeneratorMenu> {
     }
 
     @Override
+    protected void renderBg(@NotNull GuiGraphics pGuiGraphics, float pPartialTick, int pMouseX, int pMouseY) {
+        super.renderBg(pGuiGraphics, pPartialTick, pMouseX, pMouseY);
+        renderEnergyBar(pGuiGraphics, this.leftPos + 11, this.topPos + 67, 176, 56);
+    }
+
+    @Override
     @ParametersAreNonnullByDefault
     public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
         super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
@@ -34,6 +40,12 @@ public class GeoGeneratorScreen extends BaseDeviceScreen<GeoGeneratorMenu> {
                 Component.literal("Generating " + formatEnergy(menu.getBlockEntity().getEnergyGenPerTick(), true) + "/t");
         pGuiGraphics.drawString(font, energyStoredText, this.leftPos + 33, this.topPos + 26, 0x6666FF, false);
         pGuiGraphics.drawString(font, energyGeneratedText, this.leftPos + 33, this.topPos + 37, 0x6666FF, false);
+
+        Component energyText =
+                Component.literal("Energy: " + formatCapacity(menu.getEnergy(), menu.getMaxEnergy()));
+        if(isHovering(11, 15, 10, 56, pMouseX, pMouseY)) {
+            pGuiGraphics.renderTooltip(font, energyText, pMouseX, pMouseY);
+        }
     }
 
     @Override

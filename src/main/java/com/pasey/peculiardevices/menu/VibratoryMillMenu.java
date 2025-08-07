@@ -5,7 +5,6 @@ import com.pasey.peculiardevices.menu.base.ProcessorMenu;
 import com.pasey.peculiardevices.menu.util.OutputSlotItemHandler;
 import com.pasey.peculiardevices.registration.PDMenus;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.SimpleContainerData;
@@ -27,6 +26,7 @@ public class VibratoryMillMenu extends ProcessorMenu<VibratoryMillBlockEntity> {
     public VibratoryMillMenu(int containerId, Inventory playerInv, BlockEntity blockEntity, ContainerData progressData) {
         super(PDMenus.VIBRATORY_MILL_MENU.get(), playerInv, containerId, (VibratoryMillBlockEntity) blockEntity, progressData);
 
+        // TODO: migrate to DeviceMenu or ProcessorMenu constructor?
         createPlayerHotbar(playerInv);
         createPlayerInventory(playerInv);
 
@@ -34,7 +34,7 @@ public class VibratoryMillMenu extends ProcessorMenu<VibratoryMillBlockEntity> {
     }
 
     public void createBlockEntityInventory(VibratoryMillBlockEntity be) {
-        be.getOptional().ifPresent(inventory -> {
+        be.getInventoryOptional().ifPresent(inventory -> {
             addSlot(new SlotItemHandler(inventory, 0, 59, 35));
             addSlot(new OutputSlotItemHandler(inventory, 1, 109, 16));
             addSlot(new OutputSlotItemHandler(inventory, 2, 109, 35));
