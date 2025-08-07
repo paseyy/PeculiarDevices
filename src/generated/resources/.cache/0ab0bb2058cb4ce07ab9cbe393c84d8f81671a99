@@ -1,0 +1,6 @@
+// 1.20.1	2025-08-07T14:17:31.63306	Tags for minecraft:item mod id peculiardevices
+b18cb0fd28ede34c7e0468aed465c00879673fe8 data/forge/tags/items/ingots.json
+e23ddf3358bcaafa29f2e7329cf54ff9562f263a data/forge/tags/items/ores.json
+6eda45f607645fc548ebc04693198bdd85f52c0b data/forge/tags/items/raw_materials.json
+6c78d17396de229364546c3cf1c57ce1b7831024 data/peculiardevices/tags/items/pd_machines.json
+0270c5c28939618c12a9a671c83c685db10a8d3e data/peculiardevices/tags/items/pd_millings.json

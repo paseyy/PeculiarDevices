@@ -1,0 +1,6 @@
+// 1.20.1	2025-08-07T14:17:31.6309939	Registries
+d989cfc7ecff032a8820c2f2d3c467271fd26f7f data/peculiardevices/forge/biome_modifier/add_lithium_ore.json
+683b7a287a3d0edbd67bbb3e81e9c6b7b5ff767f data/peculiardevices/worldgen/configured_feature/barbertonite_ore.json
+4ba8949f719e5978261b5929699aaec2112fb25c data/peculiardevices/worldgen/configured_feature/lithium_ore.json
+8fa568862dd9612c3e932258d3fcc8210f56b609 data/peculiardevices/worldgen/placed_feature/barbertonite_ore_placed.json
+e10b87bb59d594c5c249fac38bb6cfc546bda353 data/peculiardevices/worldgen/placed_feature/lithium_ore_placed.json

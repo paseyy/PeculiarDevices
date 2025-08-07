@@ -1,0 +1,18 @@
+{
+  "type": "peculiardevices:milling",
+  "category": "MISC",
+  "craftingtime": 200,
+  "experience": 0.2,
+  "group": "milling",
+  "ingredients": [
+    {
+      "item": "peculiardevices:raw_barbertonite"
+    }
+  ],
+  "outputs": [
+    {
+      "count": 1,
+      "item": "peculiardevices:chromium_millings"
+    }
+  ]
+}

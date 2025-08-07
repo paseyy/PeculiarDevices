@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:copper_ingot"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "pattern": [
+    "G C",
+    "G C",
+    "G C"
+  ],
+  "result": {
+    "item": "peculiardevices:heat_exchange_unit"
+  },
+  "show_notification": true
+}

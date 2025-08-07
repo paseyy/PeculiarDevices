@@ -1,0 +1,18 @@
+{
+  "type": "peculiardevices:milling",
+  "category": "MISC",
+  "craftingtime": 200,
+  "experience": 0.1,
+  "group": "milling",
+  "ingredients": [
+    {
+      "item": "peculiardevices:raw_lithium"
+    }
+  ],
+  "outputs": [
+    {
+      "count": 2,
+      "item": "peculiardevices:lithium_millings"
+    }
+  ]
+}

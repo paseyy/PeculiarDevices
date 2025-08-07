@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_iron_millings": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "peculiardevices:iron_millings"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "peculiardevices:iron_ingot_from_smelting_iron_millings"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_iron_millings",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "peculiardevices:iron_ingot_from_smelting_iron_millings"
+    ]
+  },
+  "sends_telemetry_event": false
+}

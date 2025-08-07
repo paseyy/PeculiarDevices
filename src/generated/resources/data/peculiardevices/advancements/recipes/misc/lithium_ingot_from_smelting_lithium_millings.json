@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_lithium_millings": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "peculiardevices:lithium_millings"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "peculiardevices:lithium_ingot_from_smelting_lithium_millings"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_lithium_millings",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "peculiardevices:lithium_ingot_from_smelting_lithium_millings"
+    ]
+  },
+  "sends_telemetry_event": false
+}

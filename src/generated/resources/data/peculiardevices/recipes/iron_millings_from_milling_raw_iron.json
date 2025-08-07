@@ -1,0 +1,18 @@
+{
+  "type": "peculiardevices:milling",
+  "category": "MISC",
+  "craftingtime": 200,
+  "experience": 0.1,
+  "group": "milling",
+  "ingredients": [
+    {
+      "item": "minecraft:raw_iron"
+    }
+  ],
+  "outputs": [
+    {
+      "count": 2,
+      "item": "peculiardevices:iron_millings"
+    }
+  ]
+}

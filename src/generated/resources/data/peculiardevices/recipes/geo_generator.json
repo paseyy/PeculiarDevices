@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:copper_ingot"
+    },
+    "F": {
+      "item": "peculiardevices:geo_device_frame"
+    },
+    "H": {
+      "item": "peculiardevices:heat_exchange_unit"
+    },
+    "P": {
+      "item": "peculiardevices:geo_pipe"
+    },
+    "S": {
+      "item": "minecraft:stone"
+    }
+  },
+  "pattern": [
+    " H ",
+    "PFP",
+    "CSC"
+  ],
+  "result": {
+    "item": "peculiardevices:geo_generator"
+  },
+  "show_notification": true
+}

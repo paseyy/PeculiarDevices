@@ -1,0 +1,20 @@
+{
+  "block.peculiardevices.geo_device_frame": "Geo Device Frame",
+  "block.peculiardevices.geo_generator": "Geothermal Generator",
+  "block.peculiardevices.geo_pipe": "Geothermal Pipe",
+  "block.peculiardevices.lithium_ore": "Lithium Ore",
+  "block.peculiardevices.vibratory_mill": "Vibratory Mill",
+  "creativetab.pd_tab": "Peculiar Devices",
+  "item.peculiardevices.chromium_ingot": "Chromium Ingot",
+  "item.peculiardevices.chromium_millings": "Chromium Millings",
+  "item.peculiardevices.copper_millings": "Copper Millings",
+  "item.peculiardevices.gold_millings": "Gold Millings",
+  "item.peculiardevices.heat_exchange_unit": "Heat Exchange Unit",
+  "item.peculiardevices.iron_millings": "Iron Millings",
+  "item.peculiardevices.lithium_battery": "Lithium Battery",
+  "item.peculiardevices.lithium_ingot": "Lithium Ingot",
+  "item.peculiardevices.lithium_millings": "Lithium Millings",
+  "item.peculiardevices.milling_chamber": "Milling Chamber",
+  "item.peculiardevices.raw_barbertonite": "Raw Barbertonite",
+  "item.peculiardevices.raw_lithium": "Raw Lithium"
+}

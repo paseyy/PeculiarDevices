@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_gold_millings": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "peculiardevices:gold_millings"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "peculiardevices:gold_ingot_from_blasting_gold_millings"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_gold_millings",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "peculiardevices:gold_ingot_from_blasting_gold_millings"
+    ]
+  },
+  "sends_telemetry_event": false
+}

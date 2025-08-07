@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "peculiardevices:block/geo_generator",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "peculiardevices:block/geo_generator"
+    },
+    "facing=south": {
+      "model": "peculiardevices:block/geo_generator",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "peculiardevices:block/geo_generator",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "peculiardevices:block/vibratory_mill",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "peculiardevices:block/vibratory_mill"
+    },
+    "facing=south": {
+      "model": "peculiardevices:block/vibratory_mill",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "peculiardevices:block/vibratory_mill",
+      "y": 270
+    }
+  }
+}

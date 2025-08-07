@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "bottom=false": {
+      "model": "peculiardevices:block/geo_pipe"
+    },
+    "bottom=true": {
+      "model": "peculiardevices:block/geo_pipe_end"
+    }
+  }
+}
