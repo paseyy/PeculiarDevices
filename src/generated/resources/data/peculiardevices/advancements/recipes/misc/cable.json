@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_geo_device_frame": {
+    "has_lithium_ingot": {
       "conditions": {
         "items": [
           {
             "items": [
-              "peculiardevices:geo_device_frame"
+              "peculiardevices:lithium_ingot"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "peculiardevices:vibratory_mill"
+        "recipe": "peculiardevices:cable"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_geo_device_frame",
+      "has_lithium_ingot",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "peculiardevices:vibratory_mill"
+      "peculiardevices:cable"
     ]
   },
   "sends_telemetry_event": false

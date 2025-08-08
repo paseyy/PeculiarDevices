@@ -10,7 +10,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -76,7 +75,7 @@ public class PDRecipeProvider extends RecipeProvider {
                 .pattern("G C")
                 .define('G', Items.GOLD_INGOT)
                 .define('C', Items.COPPER_INGOT)
-                .unlockedBy(getHasName(PDItems.LITHIUM_INGOT.get()), has(PDItems.LITHIUM_INGOT.get()))
+                .unlockedBy(getHasName(Items.COPPER_INGOT), has(Items.COPPER_INGOT))
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PDItems.LITHIUM_BATTERY.get())
@@ -95,7 +94,7 @@ public class PDRecipeProvider extends RecipeProvider {
                 .define('C', Items.COPPER_INGOT)
                 .define('S', Items.STONE)
                 .define('B', PDItems.LITHIUM_BATTERY.get())
-                .unlockedBy(getHasName(PDItems.LITHIUM_INGOT.get()), has(PDItems.LITHIUM_INGOT.get()))
+                .unlockedBy(getHasName(PDItems.LITHIUM_BATTERY.get()), has(PDItems.LITHIUM_BATTERY.get()))
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PDItems.GEO_GENERATOR_ITEM.get())
@@ -107,7 +106,7 @@ public class PDRecipeProvider extends RecipeProvider {
                 .define('F', PDItems.GEO_DEVICE_FRAME_ITEM.get())
                 .define('C', Items.COPPER_INGOT)
                 .define('S', Items.STONE)
-                .unlockedBy(getHasName(PDItems.LITHIUM_INGOT.get()), has(PDItems.LITHIUM_INGOT.get()))
+                .unlockedBy(getHasName(PDItems.GEO_DEVICE_FRAME_ITEM.get()), has(PDItems.GEO_DEVICE_FRAME_ITEM.get()))
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PDItems.GEO_PIPE_ITEM.get())
@@ -125,7 +124,7 @@ public class PDRecipeProvider extends RecipeProvider {
                 .pattern(" I ")
                 .define('I', Items.IRON_INGOT)
                 .define('G', Items.GRAVEL)
-                .unlockedBy(getHasName(PDItems.LITHIUM_INGOT.get()), has(PDItems.LITHIUM_INGOT.get()))
+                .unlockedBy(getHasName(PDItems.GEO_DEVICE_FRAME_ITEM.get()), has(PDItems.GEO_DEVICE_FRAME_ITEM.get()))
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PDItems.VIBRATORY_MILL_ITEM.get())
@@ -138,7 +137,7 @@ public class PDRecipeProvider extends RecipeProvider {
                 .define('F', PDItems.GEO_DEVICE_FRAME_ITEM.get())
                 .define('C', Items.COPPER_INGOT)
                 .define('S', Items.STONE)
-                .unlockedBy(getHasName(PDItems.LITHIUM_INGOT.get()), has(PDItems.LITHIUM_INGOT.get()))
+                .unlockedBy(getHasName(PDItems.GEO_DEVICE_FRAME_ITEM.get()), has(PDItems.GEO_DEVICE_FRAME_ITEM.get()))
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PDItems.GEO_ENERGY_CELL_ITEM.get())
@@ -148,6 +147,15 @@ public class PDRecipeProvider extends RecipeProvider {
                 .define('B', PDItems.LITHIUM_BATTERY.get())
                 .define('F', PDItems.GEO_DEVICE_FRAME_ITEM.get())
                 .unlockedBy(getHasName(PDItems.LITHIUM_BATTERY.get()), has(PDItems.LITHIUM_BATTERY.get()))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, PDItems.CABLE_ITEM.get())
+                .pattern("   ")
+                .pattern("RCR")
+                .pattern("   ")
+                .define('R', Items.REDSTONE)
+                .define('C', Items.COPPER_INGOT)
+                .unlockedBy(getHasName(PDItems.LITHIUM_INGOT.get()), has(PDItems.LITHIUM_INGOT.get()))
                 .save(consumer);
     }
 
@@ -162,8 +170,8 @@ public class PDRecipeProvider extends RecipeProvider {
         pFinishedRecipeConsumer.accept(
                 BaseRecipeBuilder
                         .milling(RecipeCategory.MISC, ingredientList, pOutputs, pExperience, pCraftingTime,
-                            new ResourceLocation(
-                                PeculiarDevices.MODID,outputNames + "_from_milling_" + ingredientNames))
+                            ResourceLocation.fromNamespaceAndPath(
+                                    PeculiarDevices.MODID,outputNames + "_from_milling_" + ingredientNames))
                         .build()
         );
     }

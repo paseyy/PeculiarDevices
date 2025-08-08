@@ -67,19 +67,19 @@ public class Cable extends BaseEntityBlock implements SimpleWaterloggedBlock {
 
     private static VoxelShape[] shapeCache = null;
 
-    private static final VoxelShape SHAPE_CABLE_NORTH = Shapes.box(.4, .4, 0, .6, .6, .4);
-    private static final VoxelShape SHAPE_CABLE_SOUTH = Shapes.box(.4, .4, .6, .6, .6, 1);
-    private static final VoxelShape SHAPE_CABLE_WEST = Shapes.box(0, .4, .4, .4, .6, .6);
-    private static final VoxelShape SHAPE_CABLE_EAST = Shapes.box(.6, .4, .4, 1, .6, .6);
-    private static final VoxelShape SHAPE_CABLE_UP = Shapes.box(.4, .6, .4, .6, 1, .6);
-    private static final VoxelShape SHAPE_CABLE_DOWN = Shapes.box(.4, 0, .4, .6, .4, .6);
+    private static final VoxelShape SHAPE_CABLE_NORTH = Shapes.box(.3, .3, 0, .7, .7, .3);
+    private static final VoxelShape SHAPE_CABLE_SOUTH = Shapes.box(.3, .3, .7, .7, .7, 1);
+    private static final VoxelShape SHAPE_CABLE_WEST = Shapes.box(0, .3, .3, .3, .7, .7);
+    private static final VoxelShape SHAPE_CABLE_EAST = Shapes.box(.7, .3, .3, 1, .7, .7);
+    private static final VoxelShape SHAPE_CABLE_UP = Shapes.box(.3, .7, .3, .7, 1, .7);
+    private static final VoxelShape SHAPE_CABLE_DOWN = Shapes.box(.3, 0, .3, .7, .3, .7);
 
-    private static final VoxelShape SHAPE_BLOCK_NORTH = Shapes.box(.2, .2, 0, .8, .8, .1);
-    private static final VoxelShape SHAPE_BLOCK_SOUTH = Shapes.box(.2, .2, .9, .8, .8, 1);
-    private static final VoxelShape SHAPE_BLOCK_WEST = Shapes.box(0, .2, .2, .1, .8, .8);
-    private static final VoxelShape SHAPE_BLOCK_EAST = Shapes.box(.9, .2, .2, 1, .8, .8);
-    private static final VoxelShape SHAPE_BLOCK_UP = Shapes.box(.2, .9, .2, .8, 1, .8);
-    private static final VoxelShape SHAPE_BLOCK_DOWN = Shapes.box(.2, 0, .2, .8, .1, .8);
+    private static final VoxelShape SHAPE_BLOCK_NORTH = Shapes.box(.25, .25, 0, .75, .75, .2);
+    private static final VoxelShape SHAPE_BLOCK_SOUTH = Shapes.box(.25, .25, .8, .75, .75, 1);
+    private static final VoxelShape SHAPE_BLOCK_WEST = Shapes.box(0, .25, .25, .2, .75, .75);
+    private static final VoxelShape SHAPE_BLOCK_EAST = Shapes.box(.8, .25, .25, 1, .75, .75);
+    private static final VoxelShape SHAPE_BLOCK_UP = Shapes.box(.25, .8, .25, .75, 1, .75);
+    private static final VoxelShape SHAPE_BLOCK_DOWN = Shapes.box(.25, 0, .25, .75, .2, .75);
 
 
     public Cable() {
@@ -134,7 +134,7 @@ public class Cable extends BaseEntityBlock implements SimpleWaterloggedBlock {
     }
 
     private VoxelShape makeShape(ConnectorType north, ConnectorType south, ConnectorType west, ConnectorType east, ConnectorType up, ConnectorType down) {
-        VoxelShape shape = Shapes.box(.4, .4, .4, .6, .6, .6);
+        VoxelShape shape = Shapes.box(.3, .3, .3, .7, .7, .7);
         shape = combineShape(shape, north, SHAPE_CABLE_NORTH, SHAPE_BLOCK_NORTH);
         shape = combineShape(shape, south, SHAPE_CABLE_SOUTH, SHAPE_BLOCK_SOUTH);
         shape = combineShape(shape, west, SHAPE_CABLE_WEST, SHAPE_BLOCK_WEST);

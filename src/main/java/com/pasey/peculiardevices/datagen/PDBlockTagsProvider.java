@@ -33,6 +33,7 @@ public class PDBlockTagsProvider extends BlockTagsProvider {
         tag(PDTags.Blocks.PD_DEVICES)
                 .add(deviceBlocks)
                 .add(PDBlocks.GEO_PIPE.get())
+                .add(PDBlocks.CABLE.get())
         ;
 
         tag(PDTags.Blocks.PD_ORES)

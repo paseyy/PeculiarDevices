@@ -37,13 +37,14 @@ public class PDItemModelsProvider extends ItemModelProvider {
         blockItem(PDItems.GEO_GENERATOR_ITEM.get());
         blockItem(PDItems.VIBRATORY_MILL_ITEM.get());
         blockItem(PDItems.GEO_ENERGY_CELL_ITEM.get());
+        blockItem(PDItems.CABLE_ITEM.get());
 
         // special items
         geoPipeItem(PDItems.GEO_PIPE_ITEM.get());
     }
 
     private void geoPipeItem(Item item) {
-        withExistingParent("geo_pipe", new ResourceLocation(PeculiarDevices.MODID, "block/geo_pipe"))
+        withExistingParent("geo_pipe", ResourceLocation.fromNamespaceAndPath(PeculiarDevices.MODID, "block/geo_pipe"))
                 .transforms()
                 .transform(ItemDisplayContext.GUI)
                     .rotation(-150, 10, 0)
@@ -77,7 +78,7 @@ public class PDItemModelsProvider extends ItemModelProvider {
     }
 
     private void blockItem(Item item) {
-        withExistingParent(item.toString(), new ResourceLocation(PeculiarDevices.MODID, "block/" + item))
+        withExistingParent(item.toString(), ResourceLocation.fromNamespaceAndPath(PeculiarDevices.MODID, "block/" + item))
                 .transforms()
                 .transform(ItemDisplayContext.GUI)
                     .rotation(30, 225, 0)

@@ -12,12 +12,15 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import static com.pasey.peculiardevices.blockentities.util.SidedItemHandler.getFacing;
 
 public class GeoEnergyCellBlockEntity extends DeviceBlockEntity {
 
@@ -28,7 +31,32 @@ public class GeoEnergyCellBlockEntity extends DeviceBlockEntity {
 
     @Override
     public void tick() {
-        // Implement the logic for the GeoEnergyCell ticking here
+        if (level == null || level.isClientSide()) {
+            return;
+        }
+
+       distributeEnergy();
+    }
+
+    private void distributeEnergy() {
+        if (level == null) return;
+
+        if (getEnergyStorage().getEnergyStored() <= 0) {
+            return;
+        }
+
+        BlockEntity be = level.getBlockEntity(this.getBlockPos().relative(getFacing(this.getBlockState())));
+        if (be != null) {
+            be.getCapability(ForgeCapabilities.ENERGY).map(e -> {
+                if (e.canReceive()) {
+                    int received = e.receiveEnergy(Math.min(getEnergyStorage().getEnergyStored(), getEnergyStorage().getMaxExtract()), false);
+                    getEnergyStorage().extractEnergy(received, false);
+                    setChanged();
+                    return received;
+                }
+                return 0;
+            });
+        }
     }
 
     @Override

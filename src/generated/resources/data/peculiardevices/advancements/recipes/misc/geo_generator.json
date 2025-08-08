@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_lithium_ingot": {
+    "has_geo_device_frame": {
       "conditions": {
         "items": [
           {
             "items": [
-              "peculiardevices:lithium_ingot"
+              "peculiardevices:geo_device_frame"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_lithium_ingot",
+      "has_geo_device_frame",
       "has_the_recipe"
     ]
   ],

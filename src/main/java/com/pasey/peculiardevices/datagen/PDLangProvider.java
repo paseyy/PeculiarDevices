@@ -15,6 +15,7 @@ public class PDLangProvider extends LanguageProvider {
     @Override
     protected void addTranslations() {
         // Blocks
+        add(PDBlocks.CABLE.get(), "Cable");
         add(PDBlocks.GEO_DEVICE_FRAME.get(), "Geo Device Frame");
         add(PDBlocks.GEO_ENERGY_CELL.get(), "Geo Energy Cell");
         add(PDBlocks.GEO_GENERATOR.get(), "Geothermal Generator");

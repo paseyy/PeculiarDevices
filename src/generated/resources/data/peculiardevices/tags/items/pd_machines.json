@@ -3,6 +3,7 @@
     "peculiardevices:geo_energy_cell",
     "peculiardevices:geo_generator",
     "peculiardevices:vibratory_mill",
-    "peculiardevices:geo_pipe"
+    "peculiardevices:geo_pipe",
+    "peculiardevices:cable"
   ]
 }

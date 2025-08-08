@@ -156,8 +156,8 @@ public class CableBakedModel implements IDynamicBakedModel {
             Function<CablePatterns.SpriteIdx, TextureAtlasSprite> spriteGetter = this::getSpriteNormal;
 
             double o = .3;      // Thickness of the cable. .0 would be full block, .5 is infinitely thin.
-            double p = .1;      // Thickness of the connector as it is put on the connecting block
-            double q = .2;      // The wideness of the connector
+            double p = .2;      // Thickness of the connector as it is put on the connecting block
+            double q = .25;      // The wideness of the connector
 
             // For each side we either cap it off if there is no similar block adjacent on that side
             // or else we extend so that we touch the adjacent block:

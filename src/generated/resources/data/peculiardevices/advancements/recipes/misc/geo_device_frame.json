@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_lithium_ingot": {
+    "has_lithium_battery": {
       "conditions": {
         "items": [
           {
             "items": [
-              "peculiardevices:lithium_ingot"
+              "peculiardevices:lithium_battery"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_lithium_ingot",
+      "has_lithium_battery",
       "has_the_recipe"
     ]
   ],
