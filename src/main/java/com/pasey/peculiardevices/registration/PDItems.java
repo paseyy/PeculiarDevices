@@ -16,6 +16,9 @@ public class PDItems {
     public static final RegistryObject<Item> BARBERTONITE_ORE_ITEM =
             ITEMS.register("barbertonite_ore", () -> new BlockItem(PDBlocks.BARBERTONITE_ORE.get(), new Item.Properties()));
 
+    public static final RegistryObject<Item> CABLE_ITEM =
+            ITEMS.register("cable", () -> new BlockItem(PDBlocks.CABLE.get(), new Item.Properties()));
+
     public static final RegistryObject<Item> CHROMIUM_INGOT =
             ITEMS.register("chromium_ingot", () -> new Item(new Item.Properties()));
 
@@ -30,6 +33,7 @@ public class PDItems {
 
     public static final RegistryObject<Item> GEO_ENERGY_CELL_ITEM =
             ITEMS.register("geo_energy_cell", () -> new BlockItem(PDBlocks.GEO_ENERGY_CELL.get(), new Item.Properties()));
+
     public static final RegistryObject<Item> GEO_GENERATOR_ITEM =
             ITEMS.register("geo_generator", () -> new BlockItem(PDBlocks.GEO_GENERATOR.get(), new Item.Properties()));
 

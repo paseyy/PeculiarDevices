@@ -1,13 +1,14 @@
 package com.pasey.peculiardevices.datagen;
 
+import com.google.gson.JsonObject;
 import com.pasey.peculiardevices.PeculiarDevices;
 import com.pasey.peculiardevices.blocks.GeoPipe;
+import com.pasey.peculiardevices.client.model.CableModelLoader;
 import com.pasey.peculiardevices.registration.PDBlocks;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.client.model.generators.BlockStateProvider;
-import net.minecraftforge.client.model.generators.ConfiguredModel;
-import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class PDBlockStatesProvider extends BlockStateProvider {
@@ -34,6 +35,9 @@ public class PDBlockStatesProvider extends BlockStateProvider {
         // stackables (only geo pipe?)
         downStackableBlock(PDBlocks.GEO_PIPE.get());
 
+        // cables
+        registerCable();
+
         // simple blocks
         simpleBlockWithItem(PDBlocks.BARBERTONITE_ORE.get(), cubeAll(PDBlocks.BARBERTONITE_ORE.get()));
         simpleBlockWithItem(PDBlocks.GEO_DEVICE_FRAME.get(), cubeAll(PDBlocks.GEO_DEVICE_FRAME.get()));
@@ -50,5 +54,24 @@ public class PDBlockStatesProvider extends BlockStateProvider {
                    )
                    .build();
         });
+    }
+
+    private void registerCable() {
+        BlockModelBuilder model = models().getBuilder("cable")
+                .parent(models().getExistingFile(mcLoc("cube")))
+                .customLoader((builder, helper) -> new CableLoaderBuilder(CableModelLoader.GENERATOR_LOADER, builder, helper))
+                .end();
+        simpleBlock(PDBlocks.CABLE.get(), model);
+    }
+
+    public static class CableLoaderBuilder extends CustomLoaderBuilder<BlockModelBuilder> {
+        public CableLoaderBuilder(ResourceLocation loader, BlockModelBuilder parent, ExistingFileHelper existingFileHelper) {
+            super(loader, parent, existingFileHelper);
+        }
+
+        @Override
+        public JsonObject toJson(JsonObject json) {
+            return super.toJson(json);
+        }
     }
 }

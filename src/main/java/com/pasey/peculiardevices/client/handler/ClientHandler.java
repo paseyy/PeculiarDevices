@@ -1,16 +1,19 @@
 package com.pasey.peculiardevices.client.handler;
 
 import com.pasey.peculiardevices.PeculiarDevices;
+import com.pasey.peculiardevices.client.model.CableModelLoader;
 import com.pasey.peculiardevices.client.screen.GeoEnergyCellScreen;
 import com.pasey.peculiardevices.client.screen.GeoGeneratorScreen;
 import com.pasey.peculiardevices.client.screen.VibratoryMillScreen;
 import com.pasey.peculiardevices.registration.PDMenus;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
+@SuppressWarnings("unused")
 @Mod.EventBusSubscriber(modid = PeculiarDevices.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientHandler {
     @SubscribeEvent
@@ -20,5 +23,10 @@ public class ClientHandler {
             MenuScreens.register(PDMenus.GEO_GENERATOR_MENU.get(), GeoGeneratorScreen::new);
             MenuScreens.register(PDMenus.GEO_ENERGY_CELL_MENU.get(), GeoEnergyCellScreen::new);
         });
+    }
+
+    @SubscribeEvent
+    public static void modelInit(ModelEvent.RegisterGeometryLoaders event) {
+        CableModelLoader.register(event);
     }
 }

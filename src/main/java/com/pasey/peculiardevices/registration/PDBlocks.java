@@ -2,6 +2,7 @@ package com.pasey.peculiardevices.registration;
 
 import com.pasey.peculiardevices.PeculiarDevices;
 import com.pasey.peculiardevices.blocks.GeoDeviceFrame;
+import com.pasey.peculiardevices.blocks.cables.Cable;
 import com.pasey.peculiardevices.blocks.devices.GeoEnergyCell;
 import com.pasey.peculiardevices.blocks.devices.GeoGenerator;
 import com.pasey.peculiardevices.blocks.GeoPipe;
@@ -18,6 +19,7 @@ public class PDBlocks {
             DeferredRegister.create(ForgeRegistries.BLOCKS, PeculiarDevices.MODID);
 
     public static final RegistryObject<BarbertoniteOre> BARBERTONITE_ORE = BLOCKS.register("barbertonite_ore", BarbertoniteOre::new);
+    public static final RegistryObject<Cable> CABLE = BLOCKS.register("cable", Cable::new);
     public static final RegistryObject<LithiumOre> LITHIUM_ORE = BLOCKS.register("lithium_ore", LithiumOre::new);
     public static final RegistryObject<GeoDeviceFrame> GEO_DEVICE_FRAME = BLOCKS.register("geo_device_frame", GeoDeviceFrame::new);
     public static final RegistryObject<GeoEnergyCell> GEO_ENERGY_CELL = BLOCKS.register("geo_energy_cell", GeoEnergyCell::new);

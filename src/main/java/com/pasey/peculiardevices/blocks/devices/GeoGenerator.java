@@ -1,7 +1,6 @@
 package com.pasey.peculiardevices.blocks.devices;
 
 import com.pasey.peculiardevices.blockentities.GeoGeneratorBlockEntity;
-import com.pasey.peculiardevices.blockentities.base.DeviceBlockEntity;
 import com.pasey.peculiardevices.blockentities.util.CreateTickerHelper;
 import com.pasey.peculiardevices.blocks.base.BaseDeviceBlock;
 import com.pasey.peculiardevices.registration.PDBlockEntities;
@@ -42,7 +41,8 @@ public class GeoGenerator extends BaseDeviceBlock {
 
     @Override
     @ParametersAreNonnullByDefault
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+    @SuppressWarnings("deprecation")
+    public @NotNull InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         BlockEntity be = pLevel.getBlockEntity(pPos);
 
         if(!(be instanceof GeoGeneratorBlockEntity blockEntity))

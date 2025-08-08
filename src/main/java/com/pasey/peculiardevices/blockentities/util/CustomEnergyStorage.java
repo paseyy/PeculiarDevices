@@ -3,16 +3,13 @@ package com.pasey.peculiardevices.blockentities.util;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.energy.EnergyStorage;
-
-import java.util.function.Supplier;
 
 public class CustomEnergyStorage extends EnergyStorage {
     private final BlockEntity owner;
 
     public CustomEnergyStorage(EnergyStorageParams params, BlockEntity owner) {
-        this(params.capacity, params.maxReceive, params.maxExtract, params.energy, owner);
+        this(params.capacity, params.maxReceive, params.maxDistribute, params.energy, owner);
     }
 
     private CustomEnergyStorage(int capacity, int maxReceive, int maxExtract, int energy, BlockEntity owner) {

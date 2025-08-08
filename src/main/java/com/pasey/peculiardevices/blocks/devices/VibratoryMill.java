@@ -1,7 +1,6 @@
 package com.pasey.peculiardevices.blocks.devices;
 
 import com.pasey.peculiardevices.blockentities.VibratoryMillBlockEntity;
-import com.pasey.peculiardevices.blockentities.base.DeviceBlockEntity;
 import com.pasey.peculiardevices.blockentities.util.CreateTickerHelper;
 import com.pasey.peculiardevices.blocks.base.BaseDeviceBlock;
 import com.pasey.peculiardevices.registration.PDBlockEntities;
@@ -44,6 +43,7 @@ public class VibratoryMill extends BaseDeviceBlock {
     @Override
     @NotNull
     @ParametersAreNonnullByDefault
+    @SuppressWarnings("deprecation")
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         BlockEntity be = pLevel.getBlockEntity(pPos);
 
