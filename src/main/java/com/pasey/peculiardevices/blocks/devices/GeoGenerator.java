@@ -2,6 +2,7 @@ package com.pasey.peculiardevices.blocks.devices;
 
 import com.pasey.peculiardevices.blockentities.GeoGeneratorBlockEntity;
 import com.pasey.peculiardevices.blockentities.base.DeviceBlockEntity;
+import com.pasey.peculiardevices.blockentities.util.CreateTickerHelper;
 import com.pasey.peculiardevices.blocks.base.BaseDeviceBlock;
 import com.pasey.peculiardevices.registration.PDBlockEntities;
 import net.minecraft.core.BlockPos;
@@ -62,7 +63,7 @@ public class GeoGenerator extends BaseDeviceBlock {
     @Override
     @ParametersAreNonnullByDefault
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        return DeviceBlockEntity.createTickerHelper(pBlockEntityType, PDBlockEntities.GEO_GENERATOR_BE.get());
+        return CreateTickerHelper.createTickerHelper(pBlockEntityType, PDBlockEntities.GEO_GENERATOR_BE.get());
     }
 }
 

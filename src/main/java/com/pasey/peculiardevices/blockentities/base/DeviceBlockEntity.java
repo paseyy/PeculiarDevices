@@ -152,17 +152,7 @@ public abstract class DeviceBlockEntity extends BlockEntity implements MenuProvi
         return ClientboundBlockEntityDataPacket.create(this);
     }
 
-    public static <E extends BlockEntity> BlockEntityTicker<E> createTickerHelper(
-            BlockEntityType<E> blockEntityType,
-            BlockEntityType<? extends DeviceBlockEntity> expectedType) {
 
-        // Verify the blockEntityType matches the expected type
-        return blockEntityType == expectedType ? (level, pos, state, entity) -> {
-            if (entity instanceof TickableBlockEntity tickableEntity) {
-                tickableEntity.tick();
-            }
-        } : null;
-    }
 
     @Override
     @NotNull
