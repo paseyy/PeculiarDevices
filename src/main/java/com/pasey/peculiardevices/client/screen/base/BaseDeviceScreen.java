@@ -27,7 +27,6 @@ public abstract class BaseDeviceScreen<T extends DeviceMenu<?>> extends Abstract
     protected void renderBg(GuiGraphics pGuiGraphics, float pPartialTick, int pMouseX, int pMouseY) {
         renderBackground(pGuiGraphics);
         pGuiGraphics.blit(getTexture(), this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
-
     }
 
     @Override

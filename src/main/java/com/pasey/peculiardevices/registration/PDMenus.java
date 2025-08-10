@@ -3,6 +3,7 @@ package com.pasey.peculiardevices.registration;
 import com.pasey.peculiardevices.PeculiarDevices;
 import com.pasey.peculiardevices.menu.GeoEnergyCellMenu;
 import com.pasey.peculiardevices.menu.GeoGeneratorMenu;
+import com.pasey.peculiardevices.menu.GrimeDynamoMenu;
 import com.pasey.peculiardevices.menu.VibratoryMillMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;
@@ -19,6 +20,9 @@ public class PDMenus {
 
     public static final RegistryObject<MenuType<GeoGeneratorMenu>> GEO_GENERATOR_MENU =
             MENU_TYPES.register("geo_generator_menu", () -> IForgeMenuType.create(GeoGeneratorMenu::new));
+
+    public static final RegistryObject<MenuType<GrimeDynamoMenu>> GRIME_DYNAMO_MENU =
+            MENU_TYPES.register("grime_dynamo_menu", () -> IForgeMenuType.create(GrimeDynamoMenu::new));
 
     public static final RegistryObject<MenuType<VibratoryMillMenu>> VIBRATORY_MILL_MENU =
             MENU_TYPES.register("vibratory_mill_menu", () -> IForgeMenuType.create(VibratoryMillMenu::new));

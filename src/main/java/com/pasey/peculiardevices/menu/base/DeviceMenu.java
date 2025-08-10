@@ -21,7 +21,7 @@ public abstract class DeviceMenu<T extends DeviceBlockEntity> extends AbstractCo
     protected final ContainerData energyData;
 
 
-    protected DeviceMenu(@Nullable MenuType<?> pMenuType, int pContainerId, T pBlockEntity) {
+    public DeviceMenu(@Nullable MenuType<?> pMenuType, int pContainerId, T pBlockEntity) {
         super(pMenuType, pContainerId);
         blockEntity = pBlockEntity;
         this.levelAccess =

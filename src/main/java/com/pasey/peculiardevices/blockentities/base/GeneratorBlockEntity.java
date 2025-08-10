@@ -1,12 +1,12 @@
 package com.pasey.peculiardevices.blockentities.base;
 
 import com.pasey.peculiardevices.PeculiarDevices;
-import com.pasey.peculiardevices.blockentities.util.CustomEnergyStorage;
 import com.pasey.peculiardevices.blockentities.util.EnergyStorageParams;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -17,8 +17,40 @@ public abstract class GeneratorBlockEntity extends DeviceBlockEntity {
     private int[] fuelSlots;
     private int burnTime = 0, maxBurnTime = 0;
 
+    public final ContainerData burnData = new ContainerData() {
+        @Override
+        public int get(int pIndex) {
+            return switch (pIndex) {
+                case 0 -> burnTime;
+                case 1 -> maxBurnTime;
+                default -> throw new IndexOutOfBoundsException("Invalid index: " + pIndex);
+            };
+        }
+
+        @Override
+        public void set(int pIndex, int pValue) {
+            switch (pIndex) {
+                case 0 -> burnTime = pValue;
+                case 1 -> maxBurnTime = pValue;
+                default -> throw new IndexOutOfBoundsException("Invalid index: " + pIndex);
+            }
+
+        }
+
+        @Override
+        public int getCount() {
+            return 2;
+        }
+    };
+
     public GeneratorBlockEntity(BlockEntityType<? extends DeviceBlockEntity> pType, BlockPos pPos, BlockState pBlockState, int inventorySlots, EnergyStorageParams energyStorage) {
+        this(pType, pPos, pBlockState, inventorySlots, new int[] {0}, energyStorage);
+    }
+
+    public GeneratorBlockEntity(BlockEntityType<? extends DeviceBlockEntity> pType, BlockPos pPos, BlockState pBlockState, int inventorySlots, int[] fuelSlots, EnergyStorageParams energyStorage) {
         super(pType, pPos, pBlockState, inventorySlots, energyStorage);
+
+        this.fuelSlots = fuelSlots;
     }
 
     @Override
@@ -94,6 +126,7 @@ public abstract class GeneratorBlockEntity extends DeviceBlockEntity {
         var data = new CompoundTag();
         data.putInt("burnTime", burnTime);
         data.putInt("maxBurnTime", maxBurnTime);
+        pTag.put(PeculiarDevices.MODID, data);
     }
 
     protected abstract boolean requiresFuel();
@@ -107,5 +140,4 @@ public abstract class GeneratorBlockEntity extends DeviceBlockEntity {
     protected abstract void consumeFuel();
 
     public abstract int getEnergyGenPerTick();
-
 }

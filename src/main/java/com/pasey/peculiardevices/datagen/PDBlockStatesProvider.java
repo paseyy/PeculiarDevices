@@ -5,7 +5,6 @@ import com.pasey.peculiardevices.PeculiarDevices;
 import com.pasey.peculiardevices.blocks.GeoPipe;
 import com.pasey.peculiardevices.client.model.CableModelLoader;
 import com.pasey.peculiardevices.registration.PDBlocks;
-import com.pasey.peculiardevices.registration.PDItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
@@ -59,14 +58,6 @@ public class PDBlockStatesProvider extends BlockStateProvider {
                    )
                    .build();
         });
-    }
-
-    private void registerGrimeDynamo() {
-        BlockModelBuilder modelOn = models().withExistingParent("grime_dynamo_on", modLoc("block/grime_dynamo")).texture("on", modLoc("block/grime_dynamo_on"));
-        BlockModelBuilder modelOff = models().withExistingParent("grime_dynamo_off", modLoc("block/grime_dynamo")).texture("off", modLoc("block/grime_dynamo_off"));
-        horizontalBlock(PDBlocks.GRIME_DYNAMO.get(), state ->
-            state.getValue(BlockStateProperties.POWERED) ? modelOn : modelOff
-        );
     }
 
     private void registerHorizontalPoweredBlock(Block block, String blockName) {

@@ -16,17 +16,18 @@ public class PDTags {
         public static final TagKey<Block> PD_ORES = tag("pd_ores");
 
         private static TagKey<Block> tag(String name) {
-            return BlockTags.create(new ResourceLocation(PeculiarDevices.MODID, name));
+            return BlockTags.create(ResourceLocation.fromNamespaceAndPath(PeculiarDevices.MODID, name));
         }
     }
 
     public static class Items {
         public static final TagKey<Item> PD_MACHINES = tag("pd_machines");
-
         public static final TagKey<Item> PD_MILLINGS = tag("pd_millings");
 
+        public static final TagKey<Item> GRIME_DYNAMO_BURNABLES = tag("grime_dynamo_burnables");
+
         private static TagKey<Item> tag(String name) {
-            return ItemTags.create(new ResourceLocation(PeculiarDevices.MODID, name));
+            return ItemTags.create(ResourceLocation.fromNamespaceAndPath(PeculiarDevices.MODID, name));
         }
     }
 }

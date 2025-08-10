@@ -4,6 +4,7 @@ import com.pasey.peculiardevices.PeculiarDevices;
 import com.pasey.peculiardevices.client.model.CableModelLoader;
 import com.pasey.peculiardevices.client.screen.GeoEnergyCellScreen;
 import com.pasey.peculiardevices.client.screen.GeoGeneratorScreen;
+import com.pasey.peculiardevices.client.screen.GrimeDynamoScreen;
 import com.pasey.peculiardevices.client.screen.VibratoryMillScreen;
 import com.pasey.peculiardevices.registration.PDMenus;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -22,6 +23,7 @@ public class ClientHandler {
             MenuScreens.register(PDMenus.VIBRATORY_MILL_MENU.get(), VibratoryMillScreen::new);
             MenuScreens.register(PDMenus.GEO_GENERATOR_MENU.get(), GeoGeneratorScreen::new);
             MenuScreens.register(PDMenus.GEO_ENERGY_CELL_MENU.get(), GeoEnergyCellScreen::new);
+            MenuScreens.register(PDMenus.GRIME_DYNAMO_MENU.get(), GrimeDynamoScreen::new);
         });
     }
 
