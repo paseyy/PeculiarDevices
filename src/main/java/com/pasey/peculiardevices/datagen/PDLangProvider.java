@@ -20,6 +20,7 @@ public class PDLangProvider extends LanguageProvider {
         add(PDBlocks.GEO_ENERGY_CELL.get(), "Geo Energy Cell");
         add(PDBlocks.GEO_GENERATOR.get(), "Geothermal Generator");
         add(PDBlocks.GEO_PIPE.get(), "Geothermal Pipe");
+        add(PDBlocks.GRIME_DYNAMO.get(), "Grime Dynamo");
         add(PDBlocks.LITHIUM_ORE.get(), "Lithium Ore");
         add(PDBlocks.VIBRATORY_MILL.get(), "Vibratory Mill");
 

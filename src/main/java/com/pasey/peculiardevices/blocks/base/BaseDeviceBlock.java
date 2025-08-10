@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
@@ -23,11 +24,16 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 public abstract class BaseDeviceBlock extends BaseEntityBlock {
     public static DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static BooleanProperty POWERED = BlockStateProperties.POWERED;
 
-    protected BaseDeviceBlock(Properties pProperties) {
+    public BaseDeviceBlock(Properties pProperties) {
         super(pProperties);
 
-        registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+        registerDefaultState(
+                this.stateDefinition.any()
+                    .setValue(FACING, Direction.NORTH)
+                    .setValue(POWERED, false)
+        );
     }
 
 
@@ -36,13 +42,13 @@ public abstract class BaseDeviceBlock extends BaseEntityBlock {
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
         super.createBlockStateDefinition(pBuilder);
         pBuilder.add(FACING);
+        pBuilder.add(POWERED);
     }
 
     @Override
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
         return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite());
-
     }
 
     @Override

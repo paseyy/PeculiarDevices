@@ -32,7 +32,7 @@ public class GeoEnergyCellMenu extends DeviceMenu<GeoEnergyCellBlockEntity> {
     }
 
     public void createBlockEntityInventory(GeoEnergyCellBlockEntity be) {
-        be.getInventoryOptional().ifPresent(inventory -> addSlot(new SlotItemHandler(inventory, 0, 124, 35)));
+        be.getInventoryOptional().ifPresent(inventory -> addSlot(new SlotItemHandler(inventory, 0, 147, 32)));
     }
 
     @Override

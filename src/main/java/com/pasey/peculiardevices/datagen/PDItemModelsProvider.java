@@ -37,6 +37,7 @@ public class PDItemModelsProvider extends ItemModelProvider {
         blockItem(PDItems.GEO_GENERATOR_ITEM.get());
         blockItem(PDItems.VIBRATORY_MILL_ITEM.get());
         blockItem(PDItems.GEO_ENERGY_CELL_ITEM.get());
+        blockItem(PDItems.GRIME_DYNAMO_ITEM.get());
         blockItem(PDItems.CABLE_ITEM.get());
 
         // special items

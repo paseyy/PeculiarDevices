@@ -1,17 +1,32 @@
 {
   "variants": {
-    "facing=east": {
+    "facing=east,powered=false": {
       "model": "peculiardevices:block/geo_generator",
       "y": 90
     },
-    "facing=north": {
+    "facing=east,powered=true": {
+      "model": "peculiardevices:block/geo_generator",
+      "y": 90
+    },
+    "facing=north,powered=false": {
       "model": "peculiardevices:block/geo_generator"
     },
-    "facing=south": {
+    "facing=north,powered=true": {
+      "model": "peculiardevices:block/geo_generator"
+    },
+    "facing=south,powered=false": {
       "model": "peculiardevices:block/geo_generator",
       "y": 180
     },
-    "facing=west": {
+    "facing=south,powered=true": {
+      "model": "peculiardevices:block/geo_generator",
+      "y": 180
+    },
+    "facing=west,powered=false": {
+      "model": "peculiardevices:block/geo_generator",
+      "y": 270
+    },
+    "facing=west,powered=true": {
       "model": "peculiardevices:block/geo_generator",
       "y": 270
     }

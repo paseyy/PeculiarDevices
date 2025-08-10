@@ -1,17 +1,32 @@
 {
   "variants": {
-    "facing=east": {
+    "facing=east,powered=false": {
       "model": "peculiardevices:block/vibratory_mill",
       "y": 90
     },
-    "facing=north": {
+    "facing=east,powered=true": {
+      "model": "peculiardevices:block/vibratory_mill",
+      "y": 90
+    },
+    "facing=north,powered=false": {
       "model": "peculiardevices:block/vibratory_mill"
     },
-    "facing=south": {
+    "facing=north,powered=true": {
+      "model": "peculiardevices:block/vibratory_mill"
+    },
+    "facing=south,powered=false": {
       "model": "peculiardevices:block/vibratory_mill",
       "y": 180
     },
-    "facing=west": {
+    "facing=south,powered=true": {
+      "model": "peculiardevices:block/vibratory_mill",
+      "y": 180
+    },
+    "facing=west,powered=false": {
+      "model": "peculiardevices:block/vibratory_mill",
+      "y": 270
+    },
+    "facing=west,powered=true": {
       "model": "peculiardevices:block/vibratory_mill",
       "y": 270
     }

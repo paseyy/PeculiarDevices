@@ -6,6 +6,7 @@ import com.pasey.peculiardevices.blocks.cables.Cable;
 import com.pasey.peculiardevices.blocks.devices.GeoEnergyCell;
 import com.pasey.peculiardevices.blocks.devices.GeoGenerator;
 import com.pasey.peculiardevices.blocks.GeoPipe;
+import com.pasey.peculiardevices.blocks.devices.GrimeDynamo;
 import com.pasey.peculiardevices.blocks.devices.VibratoryMill;
 import com.pasey.peculiardevices.blocks.materials.BarbertoniteOre;
 import com.pasey.peculiardevices.blocks.materials.LithiumOre;
@@ -25,5 +26,6 @@ public class PDBlocks {
     public static final RegistryObject<GeoEnergyCell> GEO_ENERGY_CELL = BLOCKS.register("geo_energy_cell", GeoEnergyCell::new);
     public static final RegistryObject<GeoGenerator> GEO_GENERATOR = BLOCKS.register("geo_generator", GeoGenerator::new);
     public static final RegistryObject<GeoPipe> GEO_PIPE = BLOCKS.register("geo_pipe", GeoPipe::new);
+    public static final RegistryObject<GrimeDynamo> GRIME_DYNAMO = BLOCKS.register("grime_dynamo", GrimeDynamo::new);
     public static final RegistryObject<VibratoryMill> VIBRATORY_MILL = BLOCKS.register("vibratory_mill", VibratoryMill::new);
 }

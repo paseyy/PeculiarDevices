@@ -1,9 +1,0 @@
-// 1.20.1	2025-08-07T21:59:04.4173079	Tags for minecraft:block mod id peculiardevices
-aed48a5ece6f35f088ee460d5e743e38e5ba3688 data/forge/tags/blocks/ores.json
-e23ddf3358bcaafa29f2e7329cf54ff9562f263a data/forge/tags/blocks/ores_in_ground/stone.json
-e23ddf3358bcaafa29f2e7329cf54ff9562f263a data/forge/tags/blocks/ore_rates/singular.json
-4508ea05ad6c775c35f2da53cc9b4d5b1cef2182 data/minecraft/tags/blocks/mineable/pickaxe.json
-0c78a0900c78b7f75f76139cc234f72fb0a18770 data/minecraft/tags/blocks/needs_iron_tool.json
-68f091e7dd9e1fa50f74de2d7920287d3deac6f5 data/minecraft/tags/blocks/needs_stone_tool.json
-b6a498844a3a8fc5ec7fd2b7b579123e15712560 data/peculiardevices/tags/blocks/pd_machines.json
-e23ddf3358bcaafa29f2e7329cf54ff9562f263a data/peculiardevices/tags/blocks/pd_ores.json

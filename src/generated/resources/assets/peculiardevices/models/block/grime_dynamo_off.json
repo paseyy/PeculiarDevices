@@ -1,0 +1,6 @@
+{
+  "parent": "peculiardevices:block/grime_dynamo",
+  "textures": {
+    "0": "peculiardevices:block/grime_dynamo_off"
+  }
+}

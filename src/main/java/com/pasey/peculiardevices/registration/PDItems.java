@@ -43,6 +43,9 @@ public class PDItems {
     public static final RegistryObject<Item> GOLD_MILLINGS =
             ITEMS.register("gold_millings", () -> new Item(new Item.Properties()));
 
+    public static final RegistryObject<Item> GRIME_DYNAMO_ITEM =
+            ITEMS.register("grime_dynamo", () -> new BlockItem(PDBlocks.GRIME_DYNAMO.get(), new Item.Properties()));
+
     public static final RegistryObject<Item> HEAT_EXCHANGE_UNIT =
             ITEMS.register("heat_exchange_unit", () -> new Item(new Item.Properties()));
 

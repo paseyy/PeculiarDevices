@@ -5,9 +5,11 @@ import com.pasey.peculiardevices.PeculiarDevices;
 import com.pasey.peculiardevices.blocks.GeoPipe;
 import com.pasey.peculiardevices.client.model.CableModelLoader;
 import com.pasey.peculiardevices.registration.PDBlocks;
+import com.pasey.peculiardevices.registration.PDItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -32,6 +34,9 @@ public class PDBlockStatesProvider extends BlockStateProvider {
         horizontalBlock(PDBlocks.VIBRATORY_MILL.get(), state ->
                 models().getExistingFile(modLoc("block/vibratory_mill")));
 
+        // registerGrimeDynamo();
+        registerHorizontalPoweredBlock(PDBlocks.GRIME_DYNAMO.get(), "grime_dynamo");
+
         // stackables (only geo pipe?)
         downStackableBlock(PDBlocks.GEO_PIPE.get());
 
@@ -54,6 +59,27 @@ public class PDBlockStatesProvider extends BlockStateProvider {
                    )
                    .build();
         });
+    }
+
+    private void registerGrimeDynamo() {
+        BlockModelBuilder modelOn = models().withExistingParent("grime_dynamo_on", modLoc("block/grime_dynamo")).texture("on", modLoc("block/grime_dynamo_on"));
+        BlockModelBuilder modelOff = models().withExistingParent("grime_dynamo_off", modLoc("block/grime_dynamo")).texture("off", modLoc("block/grime_dynamo_off"));
+        horizontalBlock(PDBlocks.GRIME_DYNAMO.get(), state ->
+            state.getValue(BlockStateProperties.POWERED) ? modelOn : modelOff
+        );
+    }
+
+    private void registerHorizontalPoweredBlock(Block block, String blockName) {
+        BlockModelBuilder modelOn = models()
+                .withExistingParent(blockName + "_on", modLoc("block/" + blockName))
+                .texture("0", modLoc("block/" + blockName + "_on"));
+        BlockModelBuilder modelOff = models()
+                .withExistingParent(blockName + "_off", modLoc("block/" + blockName))
+                .texture("0", modLoc("block/" + blockName + "_off"));
+
+        horizontalBlock(block,
+                state -> state.getValue(BlockStateProperties.POWERED) ? modelOn : modelOff
+        );
     }
 
     private void registerCable() {

@@ -37,6 +37,7 @@ public class PDCreativeTabs {
                         output.accept(PDItems.GEO_ENERGY_CELL_ITEM.get());
                         output.accept(PDItems.GEO_GENERATOR_ITEM.get());
                         output.accept(PDItems.GEO_PIPE_ITEM.get());
+                        output.accept(PDItems.GRIME_DYNAMO_ITEM.get());
                         output.accept(PDItems.LITHIUM_ORE_ITEM.get());
                         output.accept(PDItems.VIBRATORY_MILL_ITEM.get());
 

@@ -29,6 +29,7 @@ public class PDLootTablesProvider extends VanillaBlockLoot {
         dropSelf(PDBlocks.GEO_ENERGY_CELL.get());
         dropSelf(PDBlocks.GEO_GENERATOR.get());
         dropSelf(PDBlocks.GEO_PIPE.get());
+        dropSelf(PDBlocks.GRIME_DYNAMO.get());
         dropSelf(PDBlocks.VIBRATORY_MILL.get());
 
         // Ores
