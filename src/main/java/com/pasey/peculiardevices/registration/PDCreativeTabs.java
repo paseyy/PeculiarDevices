@@ -41,6 +41,9 @@ public class PDCreativeTabs {
                         output.accept(PDItems.LITHIUM_ORE_ITEM.get());
                         output.accept(PDItems.VIBRATORY_MILL_ITEM.get());
 
+                        // tools
+                        output.accept(PDItems.JACKHAMMER.get());
+
                     })
                     .build()
     );

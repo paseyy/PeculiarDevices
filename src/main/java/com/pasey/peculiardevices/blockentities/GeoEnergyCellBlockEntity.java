@@ -3,6 +3,7 @@ package com.pasey.peculiardevices.blockentities;
 import com.pasey.peculiardevices.PeculiarDevices;
 import com.pasey.peculiardevices.blockentities.base.DeviceBlockEntity;
 import com.pasey.peculiardevices.blockentities.util.EnergyStorageParams;
+import com.pasey.peculiardevices.items.base.EnergyItem;
 import com.pasey.peculiardevices.menu.GeoEnergyCellMenu;
 import com.pasey.peculiardevices.registration.PDBlockEntities;
 import net.minecraft.core.BlockPos;
@@ -35,15 +36,16 @@ public class GeoEnergyCellBlockEntity extends DeviceBlockEntity {
             return;
         }
 
-       distributeEnergy();
+        if (getEnergyStorage().getEnergyStored() <= 0) {
+            return;
+        }
+
+        distributeEnergy();
+        chargeItems();
     }
 
     private void distributeEnergy() {
         if (level == null) return;
-
-        if (getEnergyStorage().getEnergyStored() <= 0) {
-            return;
-        }
 
         BlockEntity be = level.getBlockEntity(this.getBlockPos().relative(getFacing(this.getBlockState())));
         if (be != null) {
@@ -57,6 +59,21 @@ public class GeoEnergyCellBlockEntity extends DeviceBlockEntity {
                 return 0;
             });
         }
+    }
+
+    private void chargeItems() {
+        ItemStack itemStack = getInventory().getStackInSlot(0);
+        if (itemStack.isEmpty()) return;
+
+        itemStack.getCapability(ForgeCapabilities.ENERGY).map(e -> {
+            if (e.canReceive()) {
+                int received = e.receiveEnergy(Math.min(getEnergyStorage().getEnergyStored(), getEnergyStorage().getMaxExtract()), false);
+                getEnergyStorage().extractEnergy(received, false);
+                setChanged();
+                return received;
+            }
+            return 0;
+        });
     }
 
     @Override

@@ -40,6 +40,9 @@ public class PDItemModelsProvider extends ItemModelProvider {
         blockItem(PDItems.GRIME_DYNAMO_ITEM.get());
         blockItem(PDItems.CABLE_ITEM.get());
 
+        // tools
+        withExistingParent("jackhammer", ResourceLocation.fromNamespaceAndPath(PeculiarDevices.MODID, "item/jackhammer"));
+
         // special items
         geoPipeItem(PDItems.GEO_PIPE_ITEM.get());
     }

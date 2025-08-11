@@ -38,6 +38,9 @@ public class PDLangProvider extends LanguageProvider {
         add(PDItems.RAW_BARBERTONITE.get(), "Raw Barbertonite");
         add(PDItems.RAW_LITHIUM.get(), "Raw Lithium");
 
+        // Tools
+        add(PDItems.JACKHAMMER.get(), "Jackhammer");
+
         // Creative Tab
         add(PDCreativeTabs.PD_TAB.get().getDisplayName().getString(), "Peculiar Devices");
     }

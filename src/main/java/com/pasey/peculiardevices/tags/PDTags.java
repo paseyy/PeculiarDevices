@@ -24,7 +24,8 @@ public class PDTags {
         public static final TagKey<Item> PD_MACHINES = tag("pd_machines");
         public static final TagKey<Item> PD_MILLINGS = tag("pd_millings");
 
-        public static final TagKey<Item> GRIME_DYNAMO_BURNABLES = tag("grime_dynamo_burnables");
+        public static final TagKey<Item> PD_GRIME_DYNAMO_BURNABLES = tag("pd_grime_dynamo_burnables");
+        public static final TagKey<Item> PD_DRILL_HEADS = tag("pd_drill_heads");
 
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(PeculiarDevices.MODID, name));

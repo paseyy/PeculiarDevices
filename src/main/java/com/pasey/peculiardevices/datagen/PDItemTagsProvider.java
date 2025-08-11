@@ -35,7 +35,7 @@ public class PDItemTagsProvider extends ItemTagsProvider {
                 .add(PDItems.GOLD_MILLINGS.get())
                 .add(PDItems.LITHIUM_MILLINGS.get());
 
-        tag(PDTags.Items.GRIME_DYNAMO_BURNABLES)
+        tag(PDTags.Items.PD_GRIME_DYNAMO_BURNABLES)
                 .add(Items.DIRT, Items.SOUL_SOIL, Items.COARSE_DIRT, Items.MYCELIUM, Items.PODZOL, Items.MUD);
 
         tag(Tags.Items.INGOTS)

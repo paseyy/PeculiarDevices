@@ -1,6 +1,7 @@
 package com.pasey.peculiardevices.registration;
 
 import com.pasey.peculiardevices.PeculiarDevices;
+import com.pasey.peculiardevices.items.tools.Jackhammer;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
@@ -51,6 +52,9 @@ public class PDItems {
 
     public static final RegistryObject<Item> IRON_MILLINGS =
             ITEMS.register("iron_millings", () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> JACKHAMMER =
+            ITEMS.register("jackhammer", Jackhammer::new);
 
     public static final RegistryObject<Item> LITHIUM_BATTERY =
             ITEMS.register("lithium_battery", () -> new Item(new Item.Properties()));

@@ -79,7 +79,7 @@ public class GrimeDynamoBlockEntity extends GeneratorBlockEntity {
 
     @Override
     protected boolean canBurn() {
-        return getInventory().getStackInSlot(0).is(PDTags.Items.GRIME_DYNAMO_BURNABLES);
+        return getInventory().getStackInSlot(0).is(PDTags.Items.PD_GRIME_DYNAMO_BURNABLES);
     }
 
     @Override
