@@ -41,7 +41,9 @@ public class PDItemModelsProvider extends ItemModelProvider {
         blockItem(PDItems.CABLE_ITEM.get());
 
         // tools
-        withExistingParent("jackhammer", ResourceLocation.fromNamespaceAndPath(PeculiarDevices.MODID, "item/jackhammer"));
+        basicItem(PDItems.COPPER_DRILL_HEAD.get());
+        basicItem(PDItems.IRON_DRILL_HEAD.get());
+        basicItem(PDItems.DIAMOND_DRILL_HEAD.get());
 
         // special items
         geoPipeItem(PDItems.GEO_PIPE_ITEM.get());

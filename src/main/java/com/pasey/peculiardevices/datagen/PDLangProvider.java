@@ -40,6 +40,9 @@ public class PDLangProvider extends LanguageProvider {
 
         // Tools
         add(PDItems.JACKHAMMER.get(), "Jackhammer");
+        add(PDItems.COPPER_DRILL_HEAD.get(), "Copper Chisel Bit");
+        add(PDItems.IRON_DRILL_HEAD.get(), "Iron Chisel Bit");
+        add(PDItems.DIAMOND_DRILL_HEAD.get(), "Diamond Chisel Bit");
 
         // Creative Tab
         add(PDCreativeTabs.PD_TAB.get().getDisplayName().getString(), "Peculiar Devices");

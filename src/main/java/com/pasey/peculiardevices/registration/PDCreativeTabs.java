@@ -43,7 +43,9 @@ public class PDCreativeTabs {
 
                         // tools
                         output.accept(PDItems.JACKHAMMER.get());
-
+                        output.accept(PDItems.COPPER_DRILL_HEAD.get());
+                        output.accept(PDItems.IRON_DRILL_HEAD.get());
+                        output.accept(PDItems.DIAMOND_DRILL_HEAD.get());
                     })
                     .build()
     );

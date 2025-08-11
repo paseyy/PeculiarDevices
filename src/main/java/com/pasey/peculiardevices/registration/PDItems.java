@@ -26,8 +26,14 @@ public class PDItems {
     public static final RegistryObject<Item> CHROMIUM_MILLINGS =
             ITEMS.register("chromium_millings", () -> new Item(new Item.Properties()));
 
+    public static final RegistryObject<Item> COPPER_DRILL_HEAD =
+            ITEMS.register("copper_drill_head", () -> new Item(new Item.Properties()));
+
     public static final RegistryObject<Item> COPPER_MILLINGS =
             ITEMS.register("copper_millings", () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> DIAMOND_DRILL_HEAD =
+            ITEMS.register("diamond_drill_head", () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> GEO_DEVICE_FRAME_ITEM =
             ITEMS.register("geo_device_frame", () -> new BlockItem(PDBlocks.GEO_DEVICE_FRAME.get(), new Item.Properties()));
@@ -49,6 +55,9 @@ public class PDItems {
 
     public static final RegistryObject<Item> HEAT_EXCHANGE_UNIT =
             ITEMS.register("heat_exchange_unit", () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> IRON_DRILL_HEAD =
+            ITEMS.register("iron_drill_head", () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> IRON_MILLINGS =
             ITEMS.register("iron_millings", () -> new Item(new Item.Properties()));

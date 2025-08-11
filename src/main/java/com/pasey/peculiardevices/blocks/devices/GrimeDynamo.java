@@ -46,11 +46,10 @@ public class GrimeDynamo extends BaseDeviceBlock {
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext pContext) {
         BlockState state = super.getStateForPlacement(pContext);
-        if (state == null)
-            return null;
-
-        boolean isOnDirt = pContext.getLevel().getBlockState(pContext.getClickedPos().below()).is(Blocks.DIRT);
-        return state.setValue(POWERED, isOnDirt);
+        if (state == null) {
+            return this.defaultBlockState();
+        }
+        return state.setValue(POWERED, false);
     }
 
     @Override

@@ -123,10 +123,17 @@ public abstract class GeneratorBlockEntity extends DeviceBlockEntity {
     protected void saveAdditional(@NotNull CompoundTag pTag) {
         super.saveAdditional(pTag);
 
-        var data = new CompoundTag();
+        CompoundTag data = pTag.contains(PeculiarDevices.MODID, Tag.TAG_COMPOUND)
+                ? pTag.getCompound(PeculiarDevices.MODID)
+                : new CompoundTag();
+
         data.putInt("burnTime", burnTime);
         data.putInt("maxBurnTime", maxBurnTime);
         pTag.put(PeculiarDevices.MODID, data);
+    }
+
+    public int getBurnTime() {
+        return burnTime;
     }
 
     protected abstract boolean requiresFuel();

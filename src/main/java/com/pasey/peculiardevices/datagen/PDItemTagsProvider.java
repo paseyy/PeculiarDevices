@@ -38,6 +38,11 @@ public class PDItemTagsProvider extends ItemTagsProvider {
         tag(PDTags.Items.PD_GRIME_DYNAMO_BURNABLES)
                 .add(Items.DIRT, Items.SOUL_SOIL, Items.COARSE_DIRT, Items.MYCELIUM, Items.PODZOL, Items.MUD);
 
+        tag(PDTags.Items.PD_DRILL_HEADS)
+                .add(PDItems.COPPER_DRILL_HEAD.get())
+                .add(PDItems.IRON_DRILL_HEAD.get())
+                .add(PDItems.DIAMOND_DRILL_HEAD.get());
+
         tag(Tags.Items.INGOTS)
                 .add(PDItems.LITHIUM_INGOT.get())
                 .add(PDItems.CHROMIUM_INGOT.get());

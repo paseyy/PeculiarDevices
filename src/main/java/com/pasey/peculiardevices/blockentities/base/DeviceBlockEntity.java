@@ -119,7 +119,11 @@ public abstract class DeviceBlockEntity extends BlockEntity implements MenuProvi
     @Override
     protected void saveAdditional(@NotNull CompoundTag pTag) {
         super.saveAdditional(pTag);
-        var data = new CompoundTag();
+
+        CompoundTag data = pTag.contains(PeculiarDevices.MODID, Tag.TAG_COMPOUND)
+                ? pTag.getCompound(PeculiarDevices.MODID)
+                : new CompoundTag();
+
         data.put("Inventory", getInventory().serializeNBT());
         data.put("Energy", energyStorage.serializeNBT());
         pTag.put(PeculiarDevices.MODID, data);

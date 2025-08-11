@@ -1,18 +1,17 @@
 package com.pasey.peculiardevices.items.tools;
 
 import com.pasey.peculiardevices.items.base.EnergyItem;
+import com.pasey.peculiardevices.registration.PDItems;
 import com.pasey.peculiardevices.tags.PDTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.ToolAction;
@@ -21,7 +20,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,7 +29,11 @@ public class Jackhammer extends EnergyItem {
     private static final int energyPerBlock = 10;   // energy cost for breaking a block
     private static final int energyPerHit = 10;     // energy cost when hitting an entity
 
-    Map<Item, Float> drillHeadSpeeds = new HashMap<>();
+    Map<Item, Float> drillHeadSpeeds = Map.of(
+            PDItems.COPPER_DRILL_HEAD.get(), Tiers.STONE.getSpeed(),
+            PDItems.IRON_DRILL_HEAD.get(), Tiers.IRON.getSpeed(),
+            PDItems.DIAMOND_DRILL_HEAD.get(), Tiers.DIAMOND.getSpeed()
+    );
 
     public Jackhammer() {
         super(new Item.Properties(), 10000, 100, 100);
@@ -42,8 +44,7 @@ public class Jackhammer extends EnergyItem {
     public float getDestroySpeed(@NotNull ItemStack stack, @NotNull BlockState state) {
         // If block is pickaxe-minable, use the tier speed; otherwise fallback to default 1.0F
         if (state.is(BlockTags.MINEABLE_WITH_PICKAXE)) {
-            // TODO: change mining speed based on drill head
-            return Tiers.IRON.getSpeed() * drillHeadSpeeds.get(getDrillHead(stack).getItem());
+            return drillHeadSpeeds.get(getDrillHead(stack).getItem());
         }
         return 1.0F;
     }
@@ -57,7 +58,6 @@ public class Jackhammer extends EnergyItem {
             // Optional: reject breaking blocks that require a higher tier than this tool.
             // Many vanilla blocks check item instanceof TieredItem; if you require that
             // behaviour, adapt here by checking the block's required tier and comparing.
-            // For now, we only charge energy if the block is mineable with a pickaxe.
             if (state.is(BlockTags.MINEABLE_WITH_PICKAXE)) {
                 success = consumeEnergy(stack, energyPerBlock);
             }
@@ -78,12 +78,6 @@ public class Jackhammer extends EnergyItem {
             return consumeEnergy(stack, energyPerHit);
         }
         return true;
-    }
-
-    @Override
-    @ParametersAreNonnullByDefault
-    public @NotNull InteractionResult useOn(UseOnContext context) {
-        return InteractionResult.PASS;
     }
 
     @Override
@@ -129,7 +123,8 @@ public class Jackhammer extends EnergyItem {
     @Override
     @ParametersAreNonnullByDefault
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        pTooltipComponents.add(Component.literal(getDrillHead(pStack).getDisplayName() + " equipped").withStyle(net.minecraft.ChatFormatting.GRAY));
+        String equippedBitString = pStack.is(PDTags.Items.PD_DRILL_HEADS) ? getDrillHead(pStack).getDisplayName().getString() : "No bit";
+        pTooltipComponents.add(Component.literal(equippedBitString + " equipped").withStyle(net.minecraft.ChatFormatting.GRAY));
 
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }
