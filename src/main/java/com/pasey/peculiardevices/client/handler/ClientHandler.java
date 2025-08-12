@@ -8,6 +8,7 @@ import com.pasey.peculiardevices.client.screen.GrimeDynamoScreen;
 import com.pasey.peculiardevices.client.screen.VibratoryMillScreen;
 import com.pasey.peculiardevices.registration.PDMenus;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -30,6 +31,10 @@ public class ClientHandler {
     @SubscribeEvent
     public static void modelInit(ModelEvent.RegisterGeometryLoaders event) {
         CableModelLoader.register(event);
+    }
 
+    @SubscribeEvent
+    public static void onRegisterAdditionalModels(ModelEvent.RegisterAdditional event) {
+        event.register(ResourceLocation.fromNamespaceAndPath(PeculiarDevices.MODID, "item/jackhammer_model"));
     }
 }

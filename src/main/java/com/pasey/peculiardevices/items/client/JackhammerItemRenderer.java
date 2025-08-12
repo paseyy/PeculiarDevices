@@ -21,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
  * 3) Return to original pose when LMB released.
  */
 public class JackhammerItemRenderer extends BlockEntityWithoutLevelRenderer {
-    private final ResourceLocation modelLoc = ResourceLocation.fromNamespaceAndPath("peculiardevices", "models/item/jackhammer_model");
+    private final ResourceLocation modelLoc = ResourceLocation.fromNamespaceAndPath("peculiardevices", "item/jackhammer_model");
 
 
     // animation timing & magnitudes (tweak to taste)
@@ -33,9 +33,9 @@ public class JackhammerItemRenderer extends BlockEntityWithoutLevelRenderer {
 
     // internal animation state
     private boolean wasPressed = false;
+    private boolean returning = false;
     private long pressStartNano = 0L;    // start time for moving-in
     private long releaseStartNano = 0L;  // start time for returning
-    private boolean returning = false;
 
     public JackhammerItemRenderer() {
         super(Minecraft.getInstance().getBlockEntityRenderDispatcher(), Minecraft.getInstance().getEntityModels());
@@ -53,17 +53,19 @@ public class JackhammerItemRenderer extends BlockEntityWithoutLevelRenderer {
                              int packedLight,
                              int packedOverlay) {
 
+        // get the original jackhammer model
         Minecraft mc = Minecraft.getInstance();
-        // 1) animation transforms here (push/pop around rendering)
-        poseStack.pushPose();
-        // ... your move/vibrate transforms, based on input state ...
-        // 2) fetch the baked model you want to draw
         BakedModel model = mc.getModelManager().getModel(modelLoc);
 
-        // 3) delegate to ItemRenderer so lighting and layers are handled properly
+        // apply transformations
+        poseStack.pushPose();
+        poseStack.translate(0.5F, 0.5F, 0.5F);
+
+        // render item
         boolean leftHanded = displayContext == ItemDisplayContext.FIRST_PERSON_LEFT_HAND;
         mc.getItemRenderer().render(stack, displayContext, leftHanded, poseStack, buffer, packedLight, packedOverlay, model);
 
+        // revert poses (why?)
         poseStack.popPose();
     }
 
