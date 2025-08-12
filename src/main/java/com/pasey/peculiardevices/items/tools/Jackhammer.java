@@ -1,8 +1,11 @@
 package com.pasey.peculiardevices.items.tools;
 
 import com.pasey.peculiardevices.items.base.EnergyItem;
+import com.pasey.peculiardevices.items.client.JackhammerItemRenderer;
 import com.pasey.peculiardevices.registration.PDItems;
 import com.pasey.peculiardevices.tags.PDTags;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -14,6 +17,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
 import org.jetbrains.annotations.NotNull;
@@ -22,6 +26,7 @@ import org.jetbrains.annotations.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 
 public class Jackhammer extends EnergyItem {
     private static final float attackDamageBonus = 1.0f;
@@ -37,6 +42,22 @@ public class Jackhammer extends EnergyItem {
 
     public Jackhammer() {
         super(new Item.Properties(), 10000, 100, 100);
+    }
+
+
+
+    @Override
+    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+        consumer.accept(RenderJackhammer.INSTANCE);
+    }
+
+    static class RenderJackhammer implements IClientItemExtensions {
+        public static RenderJackhammer INSTANCE = new RenderJackhammer();
+
+        @Override
+        public BlockEntityWithoutLevelRenderer getCustomRenderer() {
+            return new JackhammerItemRenderer();
+        }
     }
 
     // Tool behavior: mining speed
@@ -118,6 +139,7 @@ public class Jackhammer extends EnergyItem {
         // Allow default pickaxe actions (break blocks that rely on ToolAction)
         return ToolActions.DEFAULT_PICKAXE_ACTIONS.contains(toolAction) || super.canPerformAction(stack, toolAction);
     }
+
 
     // Tooltip for the equipped drill head
     @Override

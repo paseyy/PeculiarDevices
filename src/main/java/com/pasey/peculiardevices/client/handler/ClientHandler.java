@@ -30,5 +30,6 @@ public class ClientHandler {
     @SubscribeEvent
     public static void modelInit(ModelEvent.RegisterGeometryLoaders event) {
         CableModelLoader.register(event);
+
     }
 }
