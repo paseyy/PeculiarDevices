@@ -1,18 +1,15 @@
 package com.pasey.peculiardevices.items.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.pasey.peculiardevices.items.tools.Jackhammer; // your jackhammer class
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.entity.player.Player;
-import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.ParametersAreNonnullByDefault;
 
 /**
  * Custom renderer for the Jackhammer item to animate mining:
@@ -46,6 +43,7 @@ public class JackhammerItemRenderer extends BlockEntityWithoutLevelRenderer {
     }
 
     @Override
+    @ParametersAreNonnullByDefault
     public void renderByItem(ItemStack stack,
                              ItemDisplayContext displayContext,
                              PoseStack poseStack,
@@ -59,13 +57,18 @@ public class JackhammerItemRenderer extends BlockEntityWithoutLevelRenderer {
 
         // apply transformations
         poseStack.pushPose();
-        poseStack.translate(0.5F, 0.5F, 0.5F);
+        if (displayContext != ItemDisplayContext.FIRST_PERSON_LEFT_HAND &&
+            displayContext != ItemDisplayContext.FIRST_PERSON_RIGHT_HAND) {
+            poseStack.translate(0.5F, 0.5F, 0.5F);
+        }
+        else {
+            // TODO apply first-person transformations!
+        }
 
         // render item
         boolean leftHanded = displayContext == ItemDisplayContext.FIRST_PERSON_LEFT_HAND;
         mc.getItemRenderer().render(stack, displayContext, leftHanded, poseStack, buffer, packedLight, packedOverlay, model);
 
-        // revert poses (why?)
         poseStack.popPose();
     }
 

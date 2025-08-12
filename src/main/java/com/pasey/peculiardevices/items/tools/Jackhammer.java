@@ -4,7 +4,6 @@ import com.pasey.peculiardevices.items.base.EnergyItem;
 import com.pasey.peculiardevices.items.client.JackhammerItemRenderer;
 import com.pasey.peculiardevices.registration.PDItems;
 import com.pasey.peculiardevices.tags.PDTags;
-import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -51,7 +50,7 @@ public class Jackhammer extends EnergyItem {
         consumer.accept(RenderJackhammer.INSTANCE);
     }
 
-    static class RenderJackhammer implements IClientItemExtensions {
+    public static class RenderJackhammer implements IClientItemExtensions {
         public static RenderJackhammer INSTANCE = new RenderJackhammer();
 
         @Override

@@ -37,4 +37,6 @@ public class ClientHandler {
     public static void onRegisterAdditionalModels(ModelEvent.RegisterAdditional event) {
         event.register(ResourceLocation.fromNamespaceAndPath(PeculiarDevices.MODID, "item/jackhammer_model"));
     }
+
+
 }
