@@ -6,30 +6,28 @@ import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-/**
- * Custom renderer for the Jackhammer item to animate mining:
- * 1) Move the model towards the middle of the screen,
- * 2) Vibrate back and forth while LMB is held,
- * 3) Return to original pose when LMB released.
- */
+
 public class JackhammerItemRenderer extends BlockEntityWithoutLevelRenderer {
+    public static final JackhammerItemRenderer INSTANCE = new JackhammerItemRenderer();
+
     private final ResourceLocation modelLoc = ResourceLocation.fromNamespaceAndPath("peculiardevices", "item/jackhammer_model");
-
-
     // animation timing & magnitudes (tweak to taste)
     private static final float MOVE_IN_DURATION = 0.12f;   // seconds to move in
     private static final float RETURN_DURATION = 0.12f;    // seconds to return
-    private static final float MOVE_DISTANCE = 2.0f;       // how much Z moves toward screen center (positive reduces magnitude of negative Z)
+    private static final float MOVE_DISTANCE = 0.4f;       // how much Z moves toward screen center (positive reduces magnitude of negative Z)
     private static final float VIB_AMPLITUDE = 0.06f;      // vibration amplitude (blocks)
-    private static final float VIB_FREQ = 30f;             // vibration frequency in Hz
+    private static final float VIB_FREQ = 20f;             // vibration frequency in Hz
 
     // internal animation state
-    private boolean wasPressed = false;
+    private boolean wasMining = false;
     private boolean returning = false;
     private long pressStartNano = 0L;    // start time for moving-in
     private long releaseStartNano = 0L;  // start time for returning
@@ -85,12 +83,38 @@ public class JackhammerItemRenderer extends BlockEntityWithoutLevelRenderer {
         mc.getItemRenderer().render(stack, pDisplayContext, leftHanded, poseStack, buffer, packedLight, packedOverlay, model);
     }
 
+    public void applyMiningPose(PoseStack poseStack) {
+        Minecraft mc = Minecraft.getInstance();
 
+        boolean attackDown = mc.options.keyAttack.isDown();
+        boolean lookingAtBlock = mc.hitResult instanceof net.minecraft.world.phys.BlockHitResult;
+        boolean isMining = attackDown && lookingAtBlock;
 
-    // helpers
-    private static float clamp(float v, float a, float b) {
-        return v < a ? a : Math.min(v, b);
+        if (!isMining) {
+            wasMining = false;
+            return;
+        }
+
+        if (!wasMining) {
+            pressStartNano = System.nanoTime();
+            wasMining = true;
+        }
+        float elapsedSeconds = (System.nanoTime() - pressStartNano) / 1_000_000_000.0f;
+        // move-in
+        float moveInProgress = Mth.clamp(elapsedSeconds / MOVE_IN_DURATION, 0f, 1f);
+        poseStack.translate(
+                -MOVE_DISTANCE * moveInProgress,
+                MOVE_DISTANCE * moveInProgress,
+                -MOVE_DISTANCE * moveInProgress);
+
+        // mine
+        if (moveInProgress >= 1f) {
+            float vibProgress = elapsedSeconds * VIB_FREQ;
+            float vibOffset = Mth.sin(2 * (float) Math.PI * vibProgress) * VIB_AMPLITUDE;
+            poseStack.translate(0f, 0f, vibOffset);
+        }
     }
+
 
     private static float easeOutQuad(float t) {
         return 1f - (1f - t) * (1f - t);

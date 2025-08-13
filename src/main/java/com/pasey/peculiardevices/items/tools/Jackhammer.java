@@ -15,6 +15,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.common.ToolAction;
@@ -36,14 +37,13 @@ public class Jackhammer extends EnergyItem {
     Map<Item, Float> drillHeadSpeeds = Map.of(
             PDItems.COPPER_DRILL_HEAD.get(), Tiers.STONE.getSpeed(),
             PDItems.IRON_DRILL_HEAD.get(), Tiers.IRON.getSpeed(),
-            PDItems.DIAMOND_DRILL_HEAD.get(), Tiers.DIAMOND.getSpeed()
+            PDItems.DIAMOND_DRILL_HEAD.get(), Tiers.DIAMOND.getSpeed(),
+            Items.AIR, 1.0f // default speed for no head
     );
 
     public Jackhammer() {
         super(new Item.Properties(), 10000, 100, 100);
     }
-
-
 
     @Override
     public void initializeClient(Consumer<IClientItemExtensions> consumer) {
@@ -55,7 +55,7 @@ public class Jackhammer extends EnergyItem {
 
         @Override
         public BlockEntityWithoutLevelRenderer getCustomRenderer() {
-            return new JackhammerItemRenderer();
+            return JackhammerItemRenderer.INSTANCE;
         }
     }
 

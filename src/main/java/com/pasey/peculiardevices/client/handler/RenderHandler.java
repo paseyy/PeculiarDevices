@@ -2,8 +2,10 @@ package com.pasey.peculiardevices.client.handler;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.pasey.peculiardevices.PeculiarDevices;
+import com.pasey.peculiardevices.items.client.JackhammerItemRenderer;
 import com.pasey.peculiardevices.items.tools.Jackhammer;
 import com.pasey.peculiardevices.registration.PDItems;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.world.InteractionHand;
@@ -21,7 +23,10 @@ public class RenderHandler {
         if (stack.isEmpty()) return;
 
         if (stack.getItem() == PDItems.JACKHAMMER.get()) {
-            event.setCanceled(true); // stop vanilla from applying equip/swing transforms
+            // stop vanilla from applying equip/swing transforms
+            event.setCanceled(true);
+            // use the JackhammerItemRenderer instance
+            var renderer = (JackhammerItemRenderer) Jackhammer.RenderJackhammer.INSTANCE.getCustomRenderer();
 
             // get rendering inputs from the event
             PoseStack poseStack = event.getPoseStack();
@@ -30,7 +35,17 @@ public class RenderHandler {
             ItemDisplayContext transformType = (event.getHand() == InteractionHand.MAIN_HAND)
                     ? ItemDisplayContext.FIRST_PERSON_RIGHT_HAND : ItemDisplayContext.FIRST_PERSON_LEFT_HAND;
 
-            Jackhammer.RenderJackhammer.INSTANCE.getCustomRenderer().renderByItem(stack, transformType, poseStack, buffers, packedLight, OverlayTexture.NO_OVERLAY);
+            // basic first-person transform
+            poseStack.translate(transformType == ItemDisplayContext.FIRST_PERSON_RIGHT_HAND ? 1.0f : -1.0f, -0.75f, -1.0f);
+
+            // equip animation
+            poseStack.translate((event.getEquipProgress()), -event.getEquipProgress(), 0.0f);
+
+            // mining animation
+            renderer.applyMiningPose(poseStack);
+
+            // finally, render the item
+            renderer.renderByItem(stack, transformType, poseStack, buffers, packedLight, OverlayTexture.NO_OVERLAY);
         }
     }
 }
