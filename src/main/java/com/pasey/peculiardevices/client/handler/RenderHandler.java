@@ -5,7 +5,6 @@ import com.pasey.peculiardevices.PeculiarDevices;
 import com.pasey.peculiardevices.items.client.JackhammerItemRenderer;
 import com.pasey.peculiardevices.items.tools.Jackhammer;
 import com.pasey.peculiardevices.registration.PDItems;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.world.InteractionHand;

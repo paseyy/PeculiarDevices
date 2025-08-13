@@ -9,8 +9,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -21,23 +19,16 @@ public class JackhammerItemRenderer extends BlockEntityWithoutLevelRenderer {
     private final ResourceLocation modelLoc = ResourceLocation.fromNamespaceAndPath("peculiardevices", "item/jackhammer_model");
     // animation timing & magnitudes (tweak to taste)
     private static final float MOVE_IN_DURATION = 0.12f;   // seconds to move in
-    private static final float RETURN_DURATION = 0.12f;    // seconds to return
     private static final float MOVE_DISTANCE = 0.4f;       // how much Z moves toward screen center (positive reduces magnitude of negative Z)
     private static final float VIB_AMPLITUDE = 0.06f;      // vibration amplitude (blocks)
     private static final float VIB_FREQ = 20f;             // vibration frequency in Hz
 
     // internal animation state
     private boolean wasMining = false;
-    private boolean returning = false;
     private long pressStartNano = 0L;    // start time for moving-in
-    private long releaseStartNano = 0L;  // start time for returning
 
     public JackhammerItemRenderer() {
         super(Minecraft.getInstance().getBlockEntityRenderDispatcher(), Minecraft.getInstance().getEntityModels());
-    }
-
-    private static float nowSeconds(long nanoTime) {
-        return nanoTime / 1_000_000_000.0f;
     }
 
     @Override
@@ -59,28 +50,12 @@ public class JackhammerItemRenderer extends BlockEntityWithoutLevelRenderer {
             displayContext != ItemDisplayContext.FIRST_PERSON_RIGHT_HAND) {
             poseStack.translate(0.5F, 0.5F, 0.5F);
         }
-        else {
-            // TODO apply first-person transformations!
-        }
 
         // render item
         boolean leftHanded = displayContext == ItemDisplayContext.FIRST_PERSON_LEFT_HAND;
         mc.getItemRenderer().render(stack, displayContext, leftHanded, poseStack, buffer, packedLight, packedOverlay, model);
 
         poseStack.popPose();
-    }
-
-    // simple defaults if not animating
-    private void renderDefault(ItemStack stack,
-                               ItemDisplayContext pDisplayContext,
-                               PoseStack poseStack,
-                               MultiBufferSource buffer,
-                               int packedLight,
-                               int packedOverlay) {
-        Minecraft mc = Minecraft.getInstance();
-        BakedModel model = mc.getItemRenderer().getModel(stack, null, mc.player, 0);
-        boolean leftHanded = pDisplayContext == ItemDisplayContext.FIRST_PERSON_LEFT_HAND;
-        mc.getItemRenderer().render(stack, pDisplayContext, leftHanded, poseStack, buffer, packedLight, packedOverlay, model);
     }
 
     public void applyMiningPose(PoseStack poseStack) {
@@ -113,10 +88,5 @@ public class JackhammerItemRenderer extends BlockEntityWithoutLevelRenderer {
             float vibOffset = Mth.sin(2 * (float) Math.PI * vibProgress) * VIB_AMPLITUDE;
             poseStack.translate(0f, 0f, vibOffset);
         }
-    }
-
-
-    private static float easeOutQuad(float t) {
-        return 1f - (1f - t) * (1f - t);
     }
 }

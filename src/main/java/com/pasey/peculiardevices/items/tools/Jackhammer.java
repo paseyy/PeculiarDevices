@@ -15,7 +15,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.common.ToolAction;
@@ -87,8 +86,21 @@ public class Jackhammer extends EnergyItem {
     }
 
     @Override
-    public boolean isCorrectToolForDrops(BlockState pBlock) {
-        return pBlock.is(BlockTags.MINEABLE_WITH_PICKAXE);
+    public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
+        boolean correctHead;
+
+        if (state.is(BlockTags.NEEDS_IRON_TOOL)) {
+            correctHead = getDrillHead(stack).is(PDItems.IRON_DRILL_HEAD.get()) ||
+                   getDrillHead(stack).is(PDItems.DIAMOND_DRILL_HEAD.get());
+        }
+        else if (state.is(BlockTags.NEEDS_DIAMOND_TOOL)) {
+            correctHead = getDrillHead(stack).is(PDItems.DIAMOND_DRILL_HEAD.get());
+        }
+        else {
+            correctHead = true;
+        }
+
+        return correctHead && state.is(BlockTags.MINEABLE_WITH_PICKAXE);
     }
 
     // Entity hits: consume energy instead of damaging the tool
