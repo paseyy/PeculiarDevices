@@ -34,6 +34,8 @@ public class RenderHandler {
             ItemDisplayContext transformType = (event.getHand() == InteractionHand.MAIN_HAND)
                     ? ItemDisplayContext.FIRST_PERSON_RIGHT_HAND : ItemDisplayContext.FIRST_PERSON_LEFT_HAND;
 
+            poseStack.pushPose();
+
             // basic first-person transform
             poseStack.translate(transformType == ItemDisplayContext.FIRST_PERSON_RIGHT_HAND ? 1.0f : -1.0f, -0.75f, -1.0f);
 
@@ -45,6 +47,8 @@ public class RenderHandler {
 
             // finally, render the item
             renderer.renderByItem(stack, transformType, poseStack, buffers, packedLight, OverlayTexture.NO_OVERLAY);
+
+            poseStack.popPose();
         }
     }
 }

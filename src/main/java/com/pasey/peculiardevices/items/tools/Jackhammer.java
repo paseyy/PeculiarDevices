@@ -156,7 +156,7 @@ public class Jackhammer extends EnergyItem {
     @Override
     @ParametersAreNonnullByDefault
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        String equippedBitString = pStack.is(PDTags.Items.PD_DRILL_HEADS) ? getDrillHead(pStack).getDisplayName().getString() : "No bit";
+        String equippedBitString = getDrillHead(pStack).is(PDTags.Items.PD_DRILL_HEADS) ? getDrillHead(pStack).getDisplayName().getString() : "No bit";
         pTooltipComponents.add(Component.literal(equippedBitString + " equipped").withStyle(net.minecraft.ChatFormatting.GRAY));
 
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
