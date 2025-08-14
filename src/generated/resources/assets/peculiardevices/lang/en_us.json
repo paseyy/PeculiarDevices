@@ -1,6 +1,7 @@
 {
   "block.peculiardevices.cable": "Cable",
   "block.peculiardevices.geo_device_frame": "Geo Device Frame",
+  "block.peculiardevices.geo_electric_furnace": "Geo Electric Furnace",
   "block.peculiardevices.geo_energy_cell": "Geo Energy Cell",
   "block.peculiardevices.geo_generator": "Geothermal Generator",
   "block.peculiardevices.geo_pipe": "Geothermal Pipe",

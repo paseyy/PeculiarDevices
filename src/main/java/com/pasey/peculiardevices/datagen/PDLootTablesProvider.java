@@ -26,6 +26,7 @@ public class PDLootTablesProvider extends VanillaBlockLoot {
         // Devices
         dropSelf(PDBlocks.CABLE.get());
         dropSelf(PDBlocks.GEO_DEVICE_FRAME.get());
+        dropSelf(PDBlocks.GEO_ELECTRIC_FURNACE.get());
         dropSelf(PDBlocks.GEO_ENERGY_CELL.get());
         dropSelf(PDBlocks.GEO_GENERATOR.get());
         dropSelf(PDBlocks.GEO_PIPE.get());

@@ -162,7 +162,7 @@ public abstract class BaseRecipe<T extends BaseRecipe<T>> implements Recipe<Simp
 
     public static ItemStack itemStackFromJson(JsonObject json) {
             String itemId = GsonHelper.getAsString(json, "item");
-            Item item = ITEMS.getValue(new ResourceLocation(itemId));
+            Item item = ITEMS.getValue(ResourceLocation.parse(itemId));
             if (item == null) {
                 throw new JsonSyntaxException("Unknown item '" + itemId + "'");
             }

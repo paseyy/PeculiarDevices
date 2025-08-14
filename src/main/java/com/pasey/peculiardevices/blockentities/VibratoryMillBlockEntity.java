@@ -42,4 +42,9 @@ public class VibratoryMillBlockEntity extends ProcessorBlockEntity<MillingRecipe
     protected RecipeType<MillingRecipe> getRecipeType() {
         return MillingRecipe.Type.INSTANCE;
     }
+
+    @Override
+    protected int getEnergyNeededForCrafting() {
+        return 1000;
+    }
 }

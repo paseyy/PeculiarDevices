@@ -1,5 +1,6 @@
 {
   "values": [
+    "peculiardevices:geo_electric_furnace",
     "peculiardevices:geo_energy_cell",
     "peculiardevices:geo_generator",
     "peculiardevices:grime_dynamo",

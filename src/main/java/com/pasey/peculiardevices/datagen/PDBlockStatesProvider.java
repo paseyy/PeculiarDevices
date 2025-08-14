@@ -28,13 +28,16 @@ public class PDBlockStatesProvider extends BlockStateProvider {
                         modLoc("block/geo_energy_cell_side"),
                         modLoc("block/geo_energy_cell_front"),
                         modLoc("block/geo_energy_cell_side")));
+
         horizontalBlock(PDBlocks.GEO_GENERATOR.get(), state ->
                 models().getExistingFile(modLoc("block/geo_generator")));
+
         horizontalBlock(PDBlocks.VIBRATORY_MILL.get(), state ->
                 models().getExistingFile(modLoc("block/vibratory_mill")));
 
-        // registerGrimeDynamo();
-        registerHorizontalPoweredBlock(PDBlocks.GRIME_DYNAMO.get(), "grime_dynamo");
+        registerHorizontalPoweredBlockWithModel(PDBlocks.GRIME_DYNAMO.get(), "grime_dynamo");
+
+        registerElectricFurnace(PDBlocks.GEO_ELECTRIC_FURNACE.get(), "geo");
 
         // stackables (only geo pipe?)
         downStackableBlock(PDBlocks.GEO_PIPE.get());
@@ -60,7 +63,32 @@ public class PDBlockStatesProvider extends BlockStateProvider {
         });
     }
 
-    private void registerHorizontalPoweredBlock(Block block, String blockName) {
+    private void registerElectricFurnace(Block block, String tier) {
+        BlockModelBuilder modelOff = models()
+                .cube(tier + "_electric_furnace",
+                    modLoc("block/" + tier + "_device_frame"),
+                    modLoc("block/" + tier + "_device_frame"),
+                    modLoc("block/" + tier + "_electric_furnace_front"),
+                    modLoc("block/" + tier + "_electric_furnace_back"),
+                    modLoc("block/" + tier + "_electric_furnace_side"),
+                    modLoc("block/" + tier + "_electric_furnace_side"))
+                .texture("particle", modLoc("block/" + tier + "_electric_furnace_front"));
+        BlockModelBuilder modelOn = models()
+                .cube(tier + "_electric_furnace_on",
+                    modLoc("block/" + tier + "_device_frame"),
+                    modLoc("block/" + tier + "_device_frame"),
+                    modLoc("block/" + tier + "_electric_furnace_front_on"),
+                    modLoc("block/" + tier + "_electric_furnace_back"),
+                    modLoc("block/" + tier + "_electric_furnace_side"),
+                    modLoc("block/" + tier + "_electric_furnace_side"))
+                .texture("particle", modLoc("block/" + tier + "_electric_furnace_front_on"));
+
+        horizontalBlock(block,
+                state -> state.getValue(BlockStateProperties.POWERED) ? modelOn : modelOff
+        );
+    }
+
+    private void registerHorizontalPoweredBlockWithModel(Block block, String blockName) {
         BlockModelBuilder modelOn = models()
                 .withExistingParent(blockName + "_on", modLoc("block/" + blockName))
                 .texture("0", modLoc("block/" + blockName + "_on"));

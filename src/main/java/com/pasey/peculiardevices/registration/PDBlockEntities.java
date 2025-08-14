@@ -1,10 +1,7 @@
 package com.pasey.peculiardevices.registration;
 
 import com.pasey.peculiardevices.PeculiarDevices;
-import com.pasey.peculiardevices.blockentities.GeoEnergyCellBlockEntity;
-import com.pasey.peculiardevices.blockentities.GeoGeneratorBlockEntity;
-import com.pasey.peculiardevices.blockentities.GrimeDynamoBlockEntity;
-import com.pasey.peculiardevices.blockentities.VibratoryMillBlockEntity;
+import com.pasey.peculiardevices.blockentities.*;
 import com.pasey.peculiardevices.blockentities.cables.CableBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
@@ -20,6 +17,12 @@ public class PDBlockEntities {
             BLOCK_ENTITIES.register("cable_block_entity",
                     () -> BlockEntityType.Builder.of(CableBlockEntity::new,
                                     PDBlocks.CABLE.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<GeoElectricFurnaceBlockEntity>> GEO_ELECRIC_FURNACE_BE =
+            BLOCK_ENTITIES.register("geo_electric_furnace_be",
+                    () -> BlockEntityType.Builder.of(GeoElectricFurnaceBlockEntity::new,
+                                    PDBlocks.GEO_ELECTRIC_FURNACE.get()).build(null));
+
     public static final RegistryObject<BlockEntityType<GeoEnergyCellBlockEntity>> GEO_ENERGY_CELL_BE =
             BLOCK_ENTITIES.register("geo_energy_cell_be",
                     () -> BlockEntityType.Builder.of(GeoEnergyCellBlockEntity::new,

@@ -1,6 +1,5 @@
 package com.pasey.peculiardevices.blockentities.base;
 
-import com.pasey.peculiardevices.blockentities.util.CustomEnergyStorage;
 import com.pasey.peculiardevices.blockentities.util.EnergyStorageParams;
 import com.pasey.peculiardevices.recipe.base.BaseRecipe;
 import net.minecraft.core.BlockPos;
@@ -72,7 +71,7 @@ public abstract class ProcessorBlockEntity<T extends BaseRecipe<T>> extends Devi
         if(level != null && level.isClientSide())
             return;
 
-        if(hasRecipe()) {
+        if(hasRecipe() && hasEnergy()) {
             if(maxProgress == 0) {
                 maxProgress = getRecipeMaxProgress();
             }
@@ -81,6 +80,7 @@ public abstract class ProcessorBlockEntity<T extends BaseRecipe<T>> extends Devi
 
             if (progress >= maxProgress) {
                 craftItem();
+                consumeEnergy();
                 progress = 0;
                 maxProgress = 0;
             }
@@ -145,6 +145,16 @@ public abstract class ProcessorBlockEntity<T extends BaseRecipe<T>> extends Devi
         }
     }
 
+    protected void consumeEnergy() {
+        getEnergyStorage().removeEnergy(getEnergyNeededForCrafting());
+    }
+
+    protected boolean hasEnergy() {
+        return getEnergyStorage().getEnergyStored() > getEnergyNeededForCrafting();
+    }
+
+    protected abstract int getEnergyNeededForCrafting();
+
     private boolean hasRecipe() {
         Optional<T> recipe = getCurrentRecipe();
 
@@ -152,7 +162,11 @@ public abstract class ProcessorBlockEntity<T extends BaseRecipe<T>> extends Devi
             return false;
 
         NonNullList<ItemStack> result = recipe.get().getOutputs();
-        return canInsertItemIntoOutput(result);
+        if (!canInsertItemIntoOutput(result)) {
+            return false;
+        }
+
+        return true;
     }
 
     private int getRecipeMaxProgress() {
@@ -243,7 +257,7 @@ public abstract class ProcessorBlockEntity<T extends BaseRecipe<T>> extends Devi
     }
 
     @Override
-    public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+    public @NotNull <C> LazyOptional<C> getCapability(@NotNull Capability<C> cap, @Nullable Direction side) {
         if (cap == ForgeCapabilities.ENERGY && side == getBack(getBlockState())) {
             return getEnergyOptional().cast();
         }

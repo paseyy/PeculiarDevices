@@ -34,11 +34,12 @@ public class PDItemModelsProvider extends ItemModelProvider {
         basicItem(PDItems.RAW_LITHIUM.get());
 
         // block items
-        blockItem(PDItems.GEO_GENERATOR_ITEM.get());
-        blockItem(PDItems.VIBRATORY_MILL_ITEM.get());
-        blockItem(PDItems.GEO_ENERGY_CELL_ITEM.get());
-        blockItem(PDItems.GRIME_DYNAMO_ITEM.get());
         blockItem(PDItems.CABLE_ITEM.get());
+        blockItem(PDItems.GEO_ELECTRIC_FURNACE_ITEM.get());
+        blockItem(PDItems.GEO_ENERGY_CELL_ITEM.get());
+        blockItem(PDItems.GEO_GENERATOR_ITEM.get());
+        blockItem(PDItems.GRIME_DYNAMO_ITEM.get());
+        blockItem(PDItems.VIBRATORY_MILL_ITEM.get());
 
         // tools
         basicItem(PDItems.COPPER_DRILL_HEAD.get());
