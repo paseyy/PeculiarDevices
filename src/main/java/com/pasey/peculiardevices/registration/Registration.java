@@ -10,5 +10,6 @@ public class Registration {
         PDBlockEntities.BLOCK_ENTITIES.register(modEventBus);
         PDMenus.MENU_TYPES.register(modEventBus);
         PDRecipes.SERIALIZERS.register(modEventBus);
+        PDSoundEvents.SOUND_EVENTS.register(modEventBus);
     }
 }

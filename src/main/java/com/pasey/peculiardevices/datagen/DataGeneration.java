@@ -30,5 +30,6 @@ public class DataGeneration {
         generator.addProvider(event.includeServer(), new LootTableProvider(packOutput, Collections.emptySet(),
                 List.of(new LootTableProvider.SubProviderEntry(PDLootTablesProvider::new, LootContextParamSets.BLOCK))));
         generator.addProvider(event.includeServer(), new PDWorldGenProvider(packOutput, lookupProvider));
+        generator.addProvider(event.includeServer(), new PDSoundDefinitionsProvider(packOutput, event.getExistingFileHelper()));
     }
 }

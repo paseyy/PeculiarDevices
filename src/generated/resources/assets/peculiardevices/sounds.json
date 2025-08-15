@@ -1,0 +1,12 @@
+{
+  "mineral_probe_hit": {
+    "sounds": [
+      "peculiardevices:mineral_probe_hit"
+    ]
+  },
+  "mineral_probe_miss": {
+    "sounds": [
+      "peculiardevices:mineral_probe_miss"
+    ]
+  }
+}

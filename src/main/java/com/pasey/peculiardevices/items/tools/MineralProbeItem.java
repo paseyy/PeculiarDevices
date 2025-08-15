@@ -1,13 +1,13 @@
 package com.pasey.peculiardevices.items.tools;
 
 import com.pasey.peculiardevices.items.base.EnergyItem;
+import com.pasey.peculiardevices.registration.PDSoundEvents;
 import com.pasey.peculiardevices.util.CircularList;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -17,7 +17,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Objects;
 
 public class MineralProbeItem extends EnergyItem {
@@ -40,6 +42,8 @@ public class MineralProbeItem extends EnergyItem {
     }
 
     @Override
+    @NotNull
+    @ParametersAreNonnullByDefault
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         ItemStack probe = pPlayer.getItemInHand(pUsedHand);
 
@@ -54,19 +58,32 @@ public class MineralProbeItem extends EnergyItem {
             if (!pLevel.isClientSide()) {
                 return InteractionResultHolder.consume(probe);
             }
+
+            consumeEnergy(probe, ENERGY_PER_USE);
+
             BlockPos pos = pPlayer.blockPosition();
             BlockState state;
             do {
                 state = pLevel.getBlockState(pos);
                 if (state.is(getDetectBlock(probe))) {
-                    pPlayer.displayClientMessage(Component.literal(
-                            "Detected block: " + state.getBlock().getName().getString() + " at y= " + pos.getY()), true);
+                    // hit!
+                    // show message
+                    // pPlayer.displayClientMessage(Component.literal("Detected block: " + state.getBlock().getName().getString() + " at y = " + pos.getY()), true);
+
+                    // play hit sound effect
+                    float distance = (float) pPlayer.getY() - pos.getY();
+                    float pitch = 1.5f - (distance / 100);
+                    pLevel.playSound(pPlayer, pPlayer.blockPosition(),
+                            PDSoundEvents.MINERAL_PROBE_HIT.get(), pPlayer.getSoundSource(), 0.5f, pitch);
                     return InteractionResultHolder.sidedSuccess(probe, pLevel.isClientSide());
                 }
                 pos = pos.below();
             }
             while (!state.is(Blocks.BEDROCK));
-            consumeEnergy(probe, ENERGY_PER_USE);
+
+            // miss
+            pLevel.playSound(pPlayer, pPlayer.blockPosition(),
+                    PDSoundEvents.MINERAL_PROBE_MISS.get(), pPlayer.getSoundSource(), 1.0f, 1.0f);
         }
 
         return InteractionResultHolder.sidedSuccess(probe, pLevel.isClientSide());
