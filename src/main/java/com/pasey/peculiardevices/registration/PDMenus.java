@@ -1,10 +1,7 @@
 package com.pasey.peculiardevices.registration;
 
 import com.pasey.peculiardevices.PeculiarDevices;
-import com.pasey.peculiardevices.menu.GeoEnergyCellMenu;
-import com.pasey.peculiardevices.menu.GeoGeneratorMenu;
-import com.pasey.peculiardevices.menu.GrimeDynamoMenu;
-import com.pasey.peculiardevices.menu.VibratoryMillMenu;
+import com.pasey.peculiardevices.menu.*;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.registries.DeferredRegister;
@@ -14,6 +11,9 @@ import net.minecraftforge.registries.RegistryObject;
 public class PDMenus {
     public static final DeferredRegister<MenuType<?>> MENU_TYPES =
             DeferredRegister.create(ForgeRegistries.MENU_TYPES, PeculiarDevices.MODID);
+
+    public static final RegistryObject<MenuType<GeoElectricFurnaceMenu>> GEO_ELECTRIC_FURNACE_MENU =
+            MENU_TYPES.register("geo_electric_furnace_menu", () -> IForgeMenuType.create(GeoElectricFurnaceMenu::new));
 
     public static final RegistryObject<MenuType<GeoEnergyCellMenu>> GEO_ENERGY_CELL_MENU =
             MENU_TYPES.register("geo_energy_cell_menu", () -> IForgeMenuType.create(GeoEnergyCellMenu::new));

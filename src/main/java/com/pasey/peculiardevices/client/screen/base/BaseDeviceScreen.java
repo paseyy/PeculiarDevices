@@ -1,5 +1,6 @@
 package com.pasey.peculiardevices.client.screen.base;
 
+import com.pasey.peculiardevices.menu.GeoElectricFurnaceMenu;
 import com.pasey.peculiardevices.menu.base.DeviceMenu;
 import com.pasey.peculiardevices.menu.base.ProcessorMenu;
 import net.minecraft.client.gui.GuiGraphics;
@@ -48,12 +49,18 @@ public abstract class BaseDeviceScreen<T extends DeviceMenu<?>> extends Abstract
      * @param height The height of the progress arrow
      */
     protected void renderProgressArrow(GuiGraphics pGuiGraphics, int targetX, int targetY, int sourceX, int sourceY, int height) {
-        if (!(menu instanceof ProcessorMenu<?> processorMenu))
-            return;
+        if ((menu instanceof ProcessorMenu<?> processorMenu)) {
+            if(processorMenu.isCrafting()) {
+                int length = processorMenu.getProgressArrowSize();
+                pGuiGraphics.blit(getTexture(), targetX, targetY, sourceX, sourceY, length, height);
+            }
+        }
 
-        if(processorMenu.isCrafting()) {
-            int length = processorMenu.getProgressArrowSize();
-            pGuiGraphics.blit(getTexture(), targetX, targetY, sourceX, sourceY, length, height);
+        if ((menu instanceof GeoElectricFurnaceMenu eFurnaceMenu)) {
+            if (eFurnaceMenu.isCrafting()) {
+                int length = eFurnaceMenu.getProgressArrowSize();
+                pGuiGraphics.blit(getTexture(), targetX, targetY, sourceX, sourceY, length, height);
+            }
         }
     }
 

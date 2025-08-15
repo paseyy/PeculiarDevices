@@ -169,7 +169,7 @@ public abstract class ProcessorBlockEntity<T extends BaseRecipe<T>> extends Devi
         return true;
     }
 
-    private int getRecipeMaxProgress() {
+    protected int getRecipeMaxProgress() {
         Optional<T> recipe = getCurrentRecipe();
 
         return recipe.orElseThrow().getCraftingTime();

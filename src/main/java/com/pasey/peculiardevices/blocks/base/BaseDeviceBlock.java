@@ -3,6 +3,7 @@ package com.pasey.peculiardevices.blocks.base;
 import com.pasey.peculiardevices.blockentities.base.DeviceBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -58,21 +59,26 @@ public abstract class BaseDeviceBlock extends BaseEntityBlock {
         return RenderShape.MODEL;
     }
 
+
     @Override
     @ParametersAreNonnullByDefault
-    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston) {
-        if(!pLevel.isClientSide()) {
-            BlockEntity be = pLevel.getBlockEntity(pPos);
-            if(be instanceof DeviceBlockEntity machineBE) {
-                ItemStackHandler inventory = machineBE.getInventory();
-                for(int i = 0; i < inventory.getSlots(); i++) {
-                    ItemStack stack = inventory.getStackInSlot(i);
-                    var entity = new ItemEntity(pLevel, pPos.getX() + 0.5, pPos.getY() + 0.5 , pPos.getZ() + 0.5, stack);
-                    pLevel.addFreshEntity(entity);
+    @SuppressWarnings("deprecation")
+    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
+        if (!pState.is(pNewState.getBlock())) {
+            BlockEntity blockentity = pLevel.getBlockEntity(pPos);
+            if (blockentity instanceof DeviceBlockEntity deviceBE) {
+                if (pLevel instanceof ServerLevel) {ItemStackHandler inventory = deviceBE.getInventory();
+                    for(int i = 0; i < inventory.getSlots(); i++) {
+                        ItemStack stack = inventory.getStackInSlot(i);
+                        var entity = new ItemEntity(pLevel, pPos.getX() + 0.5, pPos.getY() + 0.5 , pPos.getZ() + 0.5, stack);
+                        pLevel.addFreshEntity(entity);
+                    }
                 }
-            }
-        }
 
-        super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);
+                pLevel.updateNeighbourForOutputSignal(pPos, this);
+            }
+
+            super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
+        }
     }
 }

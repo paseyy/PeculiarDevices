@@ -24,6 +24,9 @@ public class CustomEnergyStorage extends EnergyStorage {
             energy = this.capacity;
 
         this.energy = energy;
+        if (owner.getLevel() != null && !owner.getLevel().isClientSide()) {
+            owner.getLevel().sendBlockUpdated(owner.getBlockPos(), owner.getBlockState(), owner.getBlockState(), Block.UPDATE_ALL);
+        }
     }
 
     @Override

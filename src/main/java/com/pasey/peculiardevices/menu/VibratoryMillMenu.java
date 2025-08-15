@@ -18,7 +18,7 @@ public class VibratoryMillMenu extends ProcessorMenu<VibratoryMillBlockEntity> {
     // Client Constructor
     public VibratoryMillMenu(int containerId, Inventory playerInv, FriendlyByteBuf additionalData) {
         this(containerId, playerInv,
-                Objects.requireNonNull(playerInv.player.level().getBlockEntity(additionalData.readBlockPos())),
+                Objects.requireNonNull(playerInv.player.level()).getBlockEntity(additionalData.readBlockPos()),
                 new SimpleContainerData(2));
     }
 
@@ -26,7 +26,6 @@ public class VibratoryMillMenu extends ProcessorMenu<VibratoryMillBlockEntity> {
     public VibratoryMillMenu(int containerId, Inventory playerInv, BlockEntity blockEntity, ContainerData progressData) {
         super(PDMenus.VIBRATORY_MILL_MENU.get(), playerInv, containerId, (VibratoryMillBlockEntity) blockEntity, progressData);
 
-        // TODO: migrate to DeviceMenu or ProcessorMenu constructor?
         createPlayerHotbar(playerInv);
         createPlayerInventory(playerInv);
 

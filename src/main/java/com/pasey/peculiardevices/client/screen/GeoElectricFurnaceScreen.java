@@ -2,19 +2,18 @@ package com.pasey.peculiardevices.client.screen;
 
 import com.pasey.peculiardevices.PeculiarDevices;
 import com.pasey.peculiardevices.client.screen.base.BaseDeviceScreen;
-import com.pasey.peculiardevices.menu.VibratoryMillMenu;
+import com.pasey.peculiardevices.menu.GeoElectricFurnaceMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import static com.pasey.peculiardevices.client.screen.util.FormatText.formatCapacity;
 
-public class VibratoryMillScreen extends BaseDeviceScreen<VibratoryMillMenu> {
-    public VibratoryMillScreen(VibratoryMillMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
+public class GeoElectricFurnaceScreen extends BaseDeviceScreen<GeoElectricFurnaceMenu> {
+    public GeoElectricFurnaceScreen(GeoElectricFurnaceMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
         this.imageWidth = 176;
         this.imageHeight = 166;
@@ -29,7 +28,8 @@ public class VibratoryMillScreen extends BaseDeviceScreen<VibratoryMillMenu> {
     }
 
     @Override
-    public void render(@NotNull GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
+    @ParametersAreNonnullByDefault
+    public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
         super.render(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
 
         Component energyText =
@@ -41,6 +41,8 @@ public class VibratoryMillScreen extends BaseDeviceScreen<VibratoryMillMenu> {
 
     @Override
     protected ResourceLocation getTexture() {
-        return ResourceLocation.fromNamespaceAndPath(PeculiarDevices.MODID, "textures/gui/container/vibratory_mill.png");
+        return ResourceLocation.fromNamespaceAndPath(
+                PeculiarDevices.MODID,
+                "textures/gui/container/geo_electric_furnace.png");
     }
 }

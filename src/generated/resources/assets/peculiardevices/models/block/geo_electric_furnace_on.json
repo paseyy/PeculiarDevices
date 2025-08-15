@@ -4,6 +4,7 @@
     "down": "peculiardevices:block/geo_device_frame",
     "east": "peculiardevices:block/geo_electric_furnace_side",
     "north": "peculiardevices:block/geo_electric_furnace_front_on",
+    "particle": "peculiardevices:block/geo_electric_furnace_front_on",
     "south": "peculiardevices:block/geo_electric_furnace_back",
     "up": "peculiardevices:block/geo_device_frame",
     "west": "peculiardevices:block/geo_electric_furnace_side"

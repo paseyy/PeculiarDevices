@@ -25,7 +25,6 @@ import java.util.Map;
 
 import static com.pasey.peculiardevices.blockentities.util.SidedItemHandler.contains;
 import static com.pasey.peculiardevices.blockentities.util.SidedItemHandler.getRight;
-import static com.pasey.peculiardevices.blocks.base.BaseDeviceBlock.POWERED;
 
 public class GrimeDynamoBlockEntity extends GeneratorBlockEntity {
     public static final int[] FUEL_SLOTS = {0};
@@ -52,10 +51,6 @@ public class GrimeDynamoBlockEntity extends GeneratorBlockEntity {
         }
 
         super.tick();
-
-        if (this.getBurnTime() > 0) {
-            level.setBlockAndUpdate(getBlockPos(), getBlockState().setValue(POWERED, true));
-        }
     }
 
     @Override

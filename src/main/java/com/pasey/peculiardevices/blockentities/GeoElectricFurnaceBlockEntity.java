@@ -3,6 +3,7 @@ package com.pasey.peculiardevices.blockentities;
 import com.pasey.peculiardevices.PeculiarDevices;
 import com.pasey.peculiardevices.blockentities.base.DeviceBlockEntity;
 import com.pasey.peculiardevices.blockentities.util.EnergyStorageParams;
+import com.pasey.peculiardevices.menu.GeoElectricFurnaceMenu;
 import com.pasey.peculiardevices.registration.PDBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -17,13 +18,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Optional;
 
 import static com.pasey.peculiardevices.blockentities.util.SidedItemHandler.*;
 import static com.pasey.peculiardevices.blockentities.util.SidedItemHandler.getLeft;
+import static com.pasey.peculiardevices.blocks.base.BaseDeviceBlock.POWERED;
 
 public class GeoElectricFurnaceBlockEntity extends DeviceBlockEntity {
     protected final int inputSlot = 0;
@@ -35,7 +36,7 @@ public class GeoElectricFurnaceBlockEntity extends DeviceBlockEntity {
 
 
     public GeoElectricFurnaceBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(PDBlockEntities.GEO_ELECRIC_FURNACE_BE.get(), pPos, pBlockState, 1,
+        super(PDBlockEntities.GEO_ELECRIC_FURNACE_BE.get(), pPos, pBlockState, 2,
                 new EnergyStorageParams(10000, 1000, 0, 0));
 
         this.progressData = new ContainerData() {
@@ -69,25 +70,43 @@ public class GeoElectricFurnaceBlockEntity extends DeviceBlockEntity {
         if(level != null && level.isClientSide())
             return;
 
-        if(hasRecipe()) {
-            if(maxProgress == 0) {
+        boolean active = hasRecipe() && hasEnergy();
+
+        if (active) {
+            if (maxProgress == 0) {
                 maxProgress = getRecipeMaxProgress();
             }
-
             progress++;
 
             if (progress >= maxProgress) {
                 craftItem();
+                consumeEnergy();
                 progress = 0;
                 maxProgress = 0;
+                setChanged();
             }
-
-            setChanged();
-        }
-        else {
+        } else {
             progress = 0;
             setChanged();
         }
+
+        BlockState current = getBlockState();
+        if (current.getValue(POWERED) != active) {
+            BlockState updated = current.setValue(POWERED, active);
+            level.setBlock(getBlockPos(), updated, 3);
+        }
+    }
+
+    protected boolean hasEnergy() {
+        return getEnergyStorage().getEnergyStored() > getEnergyNeededForCrafting();
+    }
+
+    protected int getEnergyNeededForCrafting() {
+        return 1000;
+    }
+
+    protected void consumeEnergy() {
+        getEnergyStorage().removeEnergy(getEnergyNeededForCrafting());
     }
 
     private void craftItem() {
@@ -104,8 +123,6 @@ public class GeoElectricFurnaceBlockEntity extends DeviceBlockEntity {
             if (ingredient.test(getStackInSlot(inputSlot))) {
                 getInventory().extractItem(inputSlot, ingredient.getItems()[0].getCount(), false);
             }
-
-            System.err.println("Necessary ingredients for recipe have not been found!");
         }
 
         boolean success = false;
@@ -198,6 +215,6 @@ public class GeoElectricFurnaceBlockEntity extends DeviceBlockEntity {
     @Override
     @ParametersAreNonnullByDefault
     public AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player pPlayer) {
-        return null;
+        return new GeoElectricFurnaceMenu(pContainerId, pPlayerInventory, this, this.progressData);
     }
 }

@@ -14,7 +14,6 @@ public abstract class ProcessorMenu<T extends ProcessorBlockEntity<?>> extends D
         super(pMenuType, pContainerId, pBlockEntity);
         this.progressData = progressData;
 
-        checkContainerSize(playerInv, PLAYER_INVENTORY_SLOTS + getInventorySlots());
         addDataSlots(progressData);
     }
 

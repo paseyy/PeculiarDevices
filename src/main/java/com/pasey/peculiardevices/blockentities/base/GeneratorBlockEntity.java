@@ -13,6 +13,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import org.jetbrains.annotations.NotNull;
 
+import static com.pasey.peculiardevices.blocks.base.BaseDeviceBlock.POWERED;
+
 public abstract class GeneratorBlockEntity extends DeviceBlockEntity {
     private int[] fuelSlots;
     private int burnTime = 0, maxBurnTime = 0;
@@ -61,6 +63,13 @@ public abstract class GeneratorBlockEntity extends DeviceBlockEntity {
 
         distributeEnergy();
         generateEnergy();
+
+        boolean burning = this.getBurnTime() > 0;
+        BlockState current = getBlockState();
+        if (current.getValue(POWERED) != burning) {
+            BlockState updated = current.setValue(POWERED, this.getBurnTime() > 0);
+            level.setBlock(getBlockPos(), updated, 3);
+        }
     }
 
     private void distributeEnergy() {
@@ -86,7 +95,7 @@ public abstract class GeneratorBlockEntity extends DeviceBlockEntity {
     }
 
     private void generateEnergy() {
-        if (getEnergyStorage().getEnergyStored() < getEnergyStorage().getMaxEnergyStored()) {
+        if (hasEnoughCapacity()) {
             if (requiresFuel()) {
                 if (burnTime <= 0) {
                     if (canBurn()) {
@@ -103,6 +112,10 @@ public abstract class GeneratorBlockEntity extends DeviceBlockEntity {
                 sendUpdate();
             }
         }
+    }
+
+    public boolean hasEnoughCapacity() {
+        return getEnergyStorage().getEnergyStored() + (getEnergyGenPerTick() * getFuelBurnTime()) <= getEnergyStorage().getMaxEnergyStored();
     }
 
     @Override
