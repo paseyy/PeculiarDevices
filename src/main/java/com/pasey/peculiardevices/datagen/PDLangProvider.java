@@ -44,6 +44,7 @@ public class PDLangProvider extends LanguageProvider {
         add(PDItems.COPPER_DRILL_HEAD.get(), "Copper Chisel Bit");
         add(PDItems.IRON_DRILL_HEAD.get(), "Iron Chisel Bit");
         add(PDItems.DIAMOND_DRILL_HEAD.get(), "Diamond Chisel Bit");
+        add(PDItems.MINERAL_PROBE.get(), "Mineral Probe");
 
         // Creative Tab
         add(PDCreativeTabs.PD_TAB.get().getDisplayName().getString(), "Peculiar Devices");

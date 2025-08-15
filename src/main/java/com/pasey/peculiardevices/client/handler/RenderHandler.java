@@ -3,7 +3,7 @@ package com.pasey.peculiardevices.client.handler;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.pasey.peculiardevices.PeculiarDevices;
 import com.pasey.peculiardevices.items.client.JackhammerItemRenderer;
-import com.pasey.peculiardevices.items.tools.Jackhammer;
+import com.pasey.peculiardevices.items.tools.JackhammerItem;
 import com.pasey.peculiardevices.registration.PDItems;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -25,7 +25,7 @@ public class RenderHandler {
             // stop vanilla from applying equip/swing transforms
             event.setCanceled(true);
             // use the JackhammerItemRenderer instance
-            var renderer = (JackhammerItemRenderer) Jackhammer.RenderJackhammer.INSTANCE.getCustomRenderer();
+            var renderer = (JackhammerItemRenderer) JackhammerItem.RenderJackhammer.INSTANCE.getCustomRenderer();
 
             // get rendering inputs from the event
             PoseStack poseStack = event.getPoseStack();

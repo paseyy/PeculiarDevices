@@ -47,6 +47,7 @@ public class PDCreativeTabs {
                         output.accept(PDItems.COPPER_DRILL_HEAD.get());
                         output.accept(PDItems.IRON_DRILL_HEAD.get());
                         output.accept(PDItems.DIAMOND_DRILL_HEAD.get());
+                        output.accept(PDItems.MINERAL_PROBE.get());
                     })
                     .build()
     );

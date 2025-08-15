@@ -1,7 +1,8 @@
 package com.pasey.peculiardevices.registration;
 
 import com.pasey.peculiardevices.PeculiarDevices;
-import com.pasey.peculiardevices.items.tools.Jackhammer;
+import com.pasey.peculiardevices.items.tools.JackhammerItem;
+import com.pasey.peculiardevices.items.tools.MineralProbeItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
@@ -66,7 +67,7 @@ public class PDItems {
             ITEMS.register("iron_millings", () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> JACKHAMMER =
-            ITEMS.register("jackhammer", Jackhammer::new);
+            ITEMS.register("jackhammer", JackhammerItem::new);
 
     public static final RegistryObject<Item> LITHIUM_BATTERY =
             ITEMS.register("lithium_battery", () -> new Item(new Item.Properties()));
@@ -82,6 +83,9 @@ public class PDItems {
 
     public static final RegistryObject<Item> MILLING_CHAMBER =
             ITEMS.register("milling_chamber", () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> MINERAL_PROBE =
+            ITEMS.register("mineral_probe", MineralProbeItem::new);
 
     public static final RegistryObject<Item> RAW_BARBERTONITE =
             ITEMS.register("raw_barbertonite", () -> new Item(new Item.Properties()));

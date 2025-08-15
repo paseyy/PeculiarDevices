@@ -13,6 +13,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -20,6 +21,8 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Objects;
 
 import static com.pasey.peculiardevices.blockentities.util.SidedItemHandler.getFacing;
 
@@ -48,17 +51,17 @@ public class GeoEnergyCellBlockEntity extends DeviceBlockEntity {
         if (level == null) return;
 
         BlockEntity be = level.getBlockEntity(this.getBlockPos().relative(getFacing(this.getBlockState())));
-        if (be != null) {
-            be.getCapability(ForgeCapabilities.ENERGY).map(e -> {
-                if (e.canReceive()) {
-                    int received = e.receiveEnergy(Math.min(getEnergyStorage().getEnergyStored(), getEnergyStorage().getMaxExtract()), false);
-                    getEnergyStorage().extractEnergy(received, false);
-                    setChanged();
-                    return received;
-                }
-                return 0;
-            });
-        }
+        if (be == null) return;
+
+        be.getCapability(ForgeCapabilities.ENERGY).map(e -> {
+            if (e.canReceive()) {
+                int received = e.receiveEnergy(Math.min(getEnergyStorage().getEnergyStored(), getEnergyStorage().getMaxExtract()), false);
+                getEnergyStorage().extractEnergy(received, false);
+                setChanged();
+                return received;
+            }
+            return 0;
+        });
     }
 
     private void chargeItems() {
@@ -70,6 +73,7 @@ public class GeoEnergyCellBlockEntity extends DeviceBlockEntity {
                 int received = e.receiveEnergy(Math.min(getEnergyStorage().getEnergyStored(), getEnergyStorage().getMaxExtract()), false);
                 getEnergyStorage().extractEnergy(received, false);
                 setChanged();
+                Objects.requireNonNull(level).sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_ALL);
                 return received;
             }
             return 0;

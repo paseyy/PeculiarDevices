@@ -33,7 +33,6 @@ public abstract class EnergyItem extends Item {
         this.maxExtract = maxExtract;
     }
 
-    // --- NBT Helpers ---
     public static int getEnergy(ItemStack stack) {
         CompoundTag tag = stack.getOrCreateTag();
         return tag.getInt("Energy");
@@ -51,7 +50,6 @@ public abstract class EnergyItem extends Item {
         return 0;
     }
 
-    // Energy helpers
     protected boolean consumeEnergy(ItemStack stack, int amount) {
         AtomicInteger consumed = new AtomicInteger(0);
         stack.getCapability(ForgeCapabilities.ENERGY).ifPresent(handler -> {
@@ -65,7 +63,6 @@ public abstract class EnergyItem extends Item {
         return consumed.get() >= amount;
     }
 
-    // Prevent vanilla durability damage
     @Override
     public boolean isDamageable(ItemStack stack) {
         return false;
@@ -92,7 +89,7 @@ public abstract class EnergyItem extends Item {
     @Override
     @ParametersAreNonnullByDefault
     public int getBarColor(ItemStack stack) {
-        return 0x3355FF; // blue
+        return 0x3355FF;
     }
 
     @Override
@@ -103,7 +100,6 @@ public abstract class EnergyItem extends Item {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }
 
-    // --- Capability Provider ---
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundTag nbt) {
         return new EnergyCapabilityProvider(stack, capacity, maxReceive, maxExtract);

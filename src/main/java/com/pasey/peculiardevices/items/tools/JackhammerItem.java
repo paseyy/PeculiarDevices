@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
-public class Jackhammer extends EnergyItem {
+public class JackhammerItem extends EnergyItem {
     private static final float attackDamageBonus = 1.0f;
     private static final float attackSpeed = -2.8f;
     private static final int energyPerBlock = 10;   // energy cost for breaking a block
@@ -37,10 +37,10 @@ public class Jackhammer extends EnergyItem {
             PDItems.COPPER_DRILL_HEAD.get(), Tiers.STONE.getSpeed(),
             PDItems.IRON_DRILL_HEAD.get(), Tiers.IRON.getSpeed(),
             PDItems.DIAMOND_DRILL_HEAD.get(), Tiers.DIAMOND.getSpeed(),
-            Items.AIR, 1.0f // default speed for no head
+            Items.AIR, 0.5f // default speed for no head
     );
 
-    public Jackhammer() {
+    public JackhammerItem() {
         super(new Item.Properties(), 10000, 100, 100);
     }
 
